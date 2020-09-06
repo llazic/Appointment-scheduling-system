@@ -1,0 +1,51 @@
+<app-gost-nav></app-gost-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4 center">
+            <h1>Registruj svoju firmu</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="naziv">Naziv firme</label>
+                            <input type="text" placeholder="Naziv" class="form-control" id="naziv" [(ngModel)]="naziv"
+                                name="naziv">
+                        </div>
+                        <div class="form-group">
+                            <label for="opis">Opis firme</label>
+                            <textarea type="opis" placeholder="Opis" class="form-control" id="opis" [(ngModel)]="opis"
+                                name="opis" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="adresa">Adresa</label>
+                            <input type="text" placeholder="Adresa na kojoj se vrše usluge" class="form-control"
+                                id="adresa" [(ngModel)]="adresa" name="adresa">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email adresa</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email adresa"
+                                [(ngModel)]="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="lozinka">Lozinka</label>
+                            <input type="password" class="form-control" id="lozinka" placeholder="Lozinka"
+                                [(ngModel)]="lozinka" name="lozinka">
+                        </div>
+                        <button type="submit" class="btn btn-success max_sirina" (click)='registrujFirmu()'>Registruj
+                            firmu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4">
+            <br>
+            Ukoliko želiš da se registruješ kao klijent klikni <a routerLink='/registracija/klijent'>ovde</a>.
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<app-gost-nav></app-gost-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4 center">
+            <h1>Pridruži nam se.</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="ime">Ime</label>
+                            <input type="text" placeholder="Ime" class="form-control" id="ime" [(ngModel)]="ime"
+                                name="ime">
+                        </div>
+                        <div class="form-group">
+                            <label for="prezime">Prezime</label>
+                            <input type="text" placeholder="Prezime" class="form-control" id="prezime"
+                                [(ngModel)]="prezime" name="prezime">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email adresa</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email adresa"
+                                [(ngModel)]="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="lozinka">Lozinka</label>
+                            <input type="password" class="form-control" id="lozinka" placeholder="Lozinka"
+                                [(ngModel)]="lozinka" name="lozinka">
+                        </div>
+                        <button type="submit" class="btn btn-success max_sirina" (click)='registrujSe()'>Registruj
+                            se</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4">
+            <br>
+            Ukoliko želiš da registruješ firmu klikni <a routerLink='/registracija/firma'>ovde</a>.
+        </div>
+    </div>
+</div>

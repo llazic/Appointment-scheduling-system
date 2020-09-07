@@ -14,7 +14,7 @@ const usluge = require('./routes/usluge');
 app.use(cors());
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost:27017/zakazirs', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connected to db'));
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connected to db'));
 
 const router = express.Router();
 

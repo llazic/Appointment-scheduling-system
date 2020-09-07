@@ -4,8 +4,8 @@ Stvari pre implementacije:
 3. Slucajevi upotrebe											(odradjeno)
 4. Detaljni scenariji upotrebe (za najvaznije s.u. (1-2))		(odradjeno)
 5. Skice izgleda ekrana (za najvaznije s.u. (1-2))				(odradjeno)
-6. Dijagrami sekvence (za najvaznije s.u. (1-2))
-7. Dijagram stanja (npr. za termin)
+6. Dijagrami sekvence (za najvaznije s.u. (1-2))				(odradjeno)
+7. Dijagram stanja (npr. za termin)								(odradjeno)
 8. Detaljan dijagram klasa (isto sto i 2.?)
 9. Model baze podataka											(odradjeno)
 //10. ORM - ne treba jer koristim mongo

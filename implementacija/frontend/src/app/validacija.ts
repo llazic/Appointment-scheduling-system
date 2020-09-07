@@ -10,3 +10,8 @@ export function popunjenoSve(polja) {
 
     return true;
 }
+
+export function jePozitivanCeoBroj(broj) {
+    if (broj > 0 && Number.isInteger(broj)) return true;
+    else return false;
+}

@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink='/firma/pocetna'>Zakaži.rs</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="usluge" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Usluge
+                </a>
+                <div class="dropdown-menu" aria-labelledby="usluge">
+                    <a class="dropdown-item" routerLink="/firma/usluge">Pregled usluga</a>
+                    <a class="dropdown-item" routerLink="/firma/dodaj/usluga">Dodaj uslugu</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="zaposleni" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Zaposleni
+                </a>
+                <div class="dropdown-menu" aria-labelledby="zaposleni">
+                    <a class="dropdown-item" routerLink="/firma/zaposleni">Pregled zaposlenih</a>
+                    <a class="dropdown-item" routerLink="/firma/dodaj/zaposleni">Dodaj zaposlenog</a>
+                </div>
+            </li>
+        </ul>
+        <b>{{firma.naziv}}</b>&nbsp;&nbsp;|&nbsp;
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" (click)='odjava()'>Odjavi se</button>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>

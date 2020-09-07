@@ -1,0 +1,44 @@
+<app-firma-nav></app-firma-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4 center">
+            <h1>Dodaj novog zaposlenog u svoju firmu.</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="ime">Ime</label>
+                            <input type="text" placeholder="Ime" class="form-control" id="ime" [(ngModel)]="ime"
+                                name="ime">
+                        </div>
+                        <div class="form-group">
+                            <label for="prezime">Prezime</label>
+                            <input type="text" placeholder="Prezime" class="form-control" id="prezime"
+                                [(ngModel)]="prezime" name="prezime">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email adresa</label>
+                            <input type="email" class="form-control" id="email" placeholder="Email adresa"
+                                [(ngModel)]="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="usluge">Usluge koje obavlja zaposleni</label>
+                            <div class="form-check" *ngFor="let u of sveUsluge; let i = index">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="checkbox" id="{{u._id}}" value="u._id" (change)="kliknutCheckbox(u._id, $event.target.checked)">
+                                <label class="form-check-label" for="{{u._id}}">{{u.naziv}}</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-success max_sirina" (click)='dodajZaposlenog()'>Dodaj</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -31,6 +31,8 @@ export class PrijavaComponent implements OnInit {
       }
 
       const tip = odgovor.tip;
+      localStorage.setItem('korisnik', JSON.stringify(odgovor));
+      
       if (tip === 'klijent') this.router.navigate(['klijent/pocetna']);
       else if (tip === 'zaposleni') this.router.navigate(['zaposleni/pocetna']);
       else this.router.navigate(['firma/pocetna']);

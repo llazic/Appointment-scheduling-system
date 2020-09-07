@@ -1,30 +1,25 @@
 Gost:
-	1. Registracija (korisnik + firma) (registracija pomocu fejsbuka?)
-	2. Logovanje
-Korisnik:
+	1. Registracija (korisnik + firma)										(odradjeno)
+	2. Logovanje															(odradjeno)
+Klijent:
 	1. Pretraga firmi (+ preporucene?)
 		- po imenu
 		- po usluzi
-	2. Zakazivanje termina
-	3. Pregled zakazanih termina
-	4. Otkazivanje termina (uz slanje mejla zaposlenom?)
+	2. Pregled firmi
+	3. Zakazivanje termina
+	4. Pregled zakazanih termina
+	5. Otkazivanje termina (uz slanje mejla zaposlenom?)
 Firma:
-	1. Kreiranje zaposlenog
-	2. Izmena zaposlenog(?)
-	3. Uklanjanje zaposlenog
-	4. Dodavanje usluga(?)
-	5. Pregled termina svojih zaposlenih
+	1. Kreiranje zaposlenog													(odradjeno)
+	2. Uklanjanje zaposlenog
+	3. Upravljanje zaduženjima zaposlenog
+	4. Upravljanje uslugama													(odradjeno)
 Zaposleni:
-	1. Kreiranje svojih termina (da li moze biti vise osoba u jednom terminu?)
-	2. Izmena postojecih termina
-	3. Pregled zakazanih termina (ili pregled termina po danu)
-	4. Otkazivanje termina korisnicima (uz slanje mejla korisniku/korisnicima?)
-	5. Promena lozinke(?) (npr. kad firma kreira zaposlenog, da moze da promeni svoju sifru)
-Administrator(?):
-	1. Odobravanje novih registracija (najbitnije za firme)
-	2. Uklanjanje profila
+	1. Pregled zakazanih termina (npr. po danu)
+	2. Otkazivanje termina korisnicima (uz slanje mejla klijentu i firmi)
+	3. Promena lozinke
 	
-+ Logout za sve ulogovane
++ Logout za sve ulogovane													(odradjeno)
 
 -Sadrzaj profila:
 	-Korisnik:

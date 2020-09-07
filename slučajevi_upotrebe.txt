@@ -14,7 +14,7 @@ Klijent:
 	4. Pregled zakazanih termina
 	5. Otkazivanje termina (uz slanje mejla zaposlenom?)
 Firma:
-	1. Kreiranje zaposlenog - (korime ili email za login?)
+	1. Kreiranje zaposlenog
 	2. Uklanjanje zaposlenog
 	3. Upravljanje zaduženjima zaposlenog
 	4. Upravljanje uslugama
@@ -22,8 +22,5 @@ Zaposleni:
 	1. Pregled zakazanih termina (npr. po danu)
 	2. Otkazivanje termina korisnicima (uz slanje mejla klijentu i firmi)
 	3. Promena lozinke
-Administrator(?):
-	1. Odobravanje novih registracija (najbitnije za firme)
-	2. Uklanjanje profila
 	
 + Logout za sve ulogovane

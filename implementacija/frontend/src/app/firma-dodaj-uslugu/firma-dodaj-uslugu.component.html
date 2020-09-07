@@ -1,0 +1,36 @@
+<app-firma-nav></app-firma-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4 center">
+            <h1>Dodaj uslugu</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-md-6 col-lg-4 offset-lg-4">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="naziv">Naziv usluge</label>
+                            <input type="text" placeholder="Naziv" class="form-control" id="naziv" [(ngModel)]="naziv"
+                                name="naziv">
+                        </div>
+                        <div class="form-group">
+                            <label for="trajanje">Dužina trajanja termina (min)</label>
+                            <input type="number" placeholder="Trajanje" class="form-control" id="trajanje"
+                                [(ngModel)]="trajanje" name="trajanje">
+                        </div>
+                        <div class="form-group">
+                            <label for="cena">Cena usluge po terminu (rsd)</label>
+                            <input type="number" class="form-control" id="cena" placeholder="Cena"
+                                [(ngModel)]="cena" name="cena">
+                        </div>
+                        <button type="submit" class="btn btn-success max_sirina" (click)='dodajUslugu()'>Dodaj uslugu</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

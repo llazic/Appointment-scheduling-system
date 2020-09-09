@@ -1,1 +1,36 @@
 <app-firma-nav></app-firma-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 center">
+            <h1>Zaposleni</h1>
+            <br>
+        </div>
+        <div *ngIf="zaposleni.length === 0" class="col col-12 col-md-8 offset-md-2 center">
+            <h4>Trenutno nemate zaposlene.</h4>
+        </div>
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Ime i prezime</th>
+                        <th scope="col">Opcije</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let z of zaposleni">
+                        <td>{{z.ime}} {{z.prezime}}</td>
+                        <td><button type="button" class="btn btn-sm btn-success" (click)="dodeliRadnoVreme(z)">
+                                Radno vreme</button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary btn-sm"
+                                (click)="promeniUsluge(z)">Usluge</button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-sm btn-danger" (click)="otpusti(z)">Otpusti</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

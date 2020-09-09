@@ -27,6 +27,8 @@ exports.validirajKlijenta = function (klijent) {
 
 exports.validirajZaposlenog = function (zaposleni) {
     const schema = Joi.object({
+        _id : Joi.objectId(),
+        
         ime: Joi.string()
             .pattern(new RegExp('^[a-zA-Z]{1,30}$'))
             .min(1)

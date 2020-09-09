@@ -8,30 +8,45 @@ import { Router } from '@angular/router';
 export class FirmaService {
   uri = 'http://localhost:3232';
 
-  constructor(private http: HttpClient, private router : Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   dodajUslugu(naziv, trajanje, cena, firma_id) {
     const data = {
-      naziv : naziv,
-      trajanje : trajanje,
-      cena : cena,
-      firma_id : firma_id
+      naziv: naziv,
+      trajanje: trajanje,
+      cena: cena,
+      firma_id: firma_id
     }
     return this.http.post(`${this.uri}/usluga`, data);
   }
 
-  dohvatiUsluge(firma_id){
+  dohvatiUsluge(firma_id): any {
     return this.http.get(`${this.uri}/usluge/${firma_id}`);
   }
 
   dodajZaposlenog(ime, prezime, email, firma_id, usluge) {
     const data = {
-      ime : ime,
-      prezime : prezime,
-      email : email,
-      firma_id : firma_id,
-      usluge : usluge
+      ime: ime,
+      prezime: prezime,
+      email: email,
+      firma_id: firma_id,
+      usluge: usluge
     }
     return this.http.post(`${this.uri}/zaposleni`, data);
+  }
+
+  dohvatiZaposlene(firma_id): any {
+    return this.http.get(`${this.uri}/zaposleni/${firma_id}`);
+  }
+
+  otpustiZaposlenog(zaposleni_id) {
+    return this.http.delete(`${this.uri}/zaposleni/${zaposleni_id}`);
+  }
+
+  azurirajZaposlenog(zaposleni_id, usluge) {
+    const data = {
+      usluge : usluge
+    }
+    return this.http.put(`${this.uri}/zaposleni/${zaposleni_id}`, data);
   }
 }

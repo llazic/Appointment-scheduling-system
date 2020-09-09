@@ -15,7 +15,6 @@ export class FirmaDodajZaposlenogComponent implements OnInit {
   ngOnInit() {
     this.firma = JSON.parse(localStorage.getItem('korisnik'));
     this.firmaService.dohvatiUsluge(this.firma._id).subscribe((odgovor : any) => {
-      console.log(odgovor);
       this.sveUsluge = odgovor;
       this.odabraneUsluge = [];
     })

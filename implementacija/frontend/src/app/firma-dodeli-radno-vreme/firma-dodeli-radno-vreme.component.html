@@ -1,0 +1,107 @@
+<app-firma-nav></app-firma-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 center">
+            <h1>Kada radi {{zaposleni.ime}} {{zaposleni.prezime}}?</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker>
+            <!-- <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker> -->
+            <!-- <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <label>Datum početka važenja</label>
+                        <table class='table' width="100%">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="godinaOd" id="godinaOd"
+                                            [(ngModel)]="godinaOd">
+                                            <option selected>Godina</option>
+                                            <option *ngFor="let g of godine" value="{{g}}">{{g}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="mesecOd" id="mesecOd" [(ngModel)]="mesecOd">
+                                            <option>Mesec</option>
+                                            <option *ngFor="let m of meseci; let i = index" value="{{i}}">{{m}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="danOd" id="danOd" [(ngModel)]="danOd">
+                                            <option>Dan</option>
+                                            <option *ngFor="let d of dani" value="{{d}}">{{d}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <label>Datum kraja važenja</label>
+                        <table class='table' width="100%">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="godinaDo" id="godinaDo"
+                                            [(ngModel)]="godinaDo">
+                                            <option selected>Godina</option>
+                                            <option *ngFor="let g of godine" value="{{g}}">{{g}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="mesecDo" id="mesecDo" [(ngModel)]="mesecDo">
+                                            <option>Mesec</option>
+                                            <option *ngFor="let m of meseci; let i = index" value="{{i}}">{{m}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="danDo" id="danDo" [(ngModel)]="danDo">
+                                            <option>Dan</option>
+                                            <option *ngFor="let d of dani" value="{{d}}">{{d}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <label>Početak radnog vremena</label>
+                        <table id="tabela_do" class='table' width="100%">
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="satOd" id="satOd"
+                                            [(ngModel)]="satOd">
+                                            <option>Sat</option>
+                                            <option *ngFor="let s of sati" value="{{s}}">{{s}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select class="form-control" name="minutOd" id="minutOd" [(ngModel)]="minutOd">
+                                            <option>Minut</option>
+                                            <option *ngFor="let m of minuti; let i = index" value="{{m}}">{{m}}</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="center">
+                            <button type="submit" class="btn btn-success" (click)='dodeli()'>Dodeli</button>
+                        </div>
+                    </form>
+                </div> -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

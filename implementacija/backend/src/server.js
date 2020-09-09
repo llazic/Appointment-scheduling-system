@@ -5,10 +5,12 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const sha256 = require('js-sha256');
+
 const { KorisnikModel } = require('./modeli/korisnik-model');
 const { FirmaModel } = require('./modeli/firma-model');
-const registracije = require('./routes/registracije');
 
+const registracije = require('./routes/registracije');
+const zaposleni = require('./routes/zaposleni');
 const usluge = require('./routes/usluge');
 
 app.use(cors());
@@ -39,6 +41,7 @@ app.post('/prijava', async (req, res, next) => {
 });
 
 
+app.use('/', zaposleni);
 app.use('/', registracije);
 app.use('/', usluge);
 app.use('/', router);

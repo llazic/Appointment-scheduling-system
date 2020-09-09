@@ -9,14 +9,18 @@ import { FirmaDodajZaposlenogComponent } from './firma-dodaj-zaposlenog/firma-do
 import { FirmaPregledZaposlenihComponent } from './firma-pregled-zaposlenih/firma-pregled-zaposlenih.component';
 import { FirmaDodajUsluguComponent } from './firma-dodaj-uslugu/firma-dodaj-uslugu.component';
 import { FirmaPregledUslugaComponent } from './firma-pregled-usluga/firma-pregled-usluga.component';
+import { FirmaIzmeniUslugeZaposlenogComponent } from './firma-izmeni-usluge-zaposlenog/firma-izmeni-usluge-zaposlenog.component';
+import { FirmaDodeliRadnoVremeComponent } from './firma-dodeli-radno-vreme/firma-dodeli-radno-vreme.component';
 
 
 const routes: Routes = [
   { path:'', component: PrijavaComponent },
   { path:'firma/dodaj/usluga', component: FirmaDodajUsluguComponent },
   { path:'firma/dodaj/zaposleni', component: FirmaDodajZaposlenogComponent },
+  { path:'firma/zaposleni/radno_vreme', component: FirmaDodeliRadnoVremeComponent },
   { path:'firma/pocetna', component: FirmaPregledZaposlenihComponent },
   { path:'firma/zaposleni', component: FirmaPregledZaposlenihComponent },
+  { path:'firma/zaposleni/usluge', component: FirmaIzmeniUslugeZaposlenogComponent },
   { path:'firma/usluge', component: FirmaPregledUslugaComponent },
   { path:'klijent/pocetna', component: KlijentPocetnaComponent},
   { path:'registracija/klijent', component: RegistracijaComponent },

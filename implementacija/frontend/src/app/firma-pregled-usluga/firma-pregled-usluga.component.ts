@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirmaService } from '../firma.service';
 
 @Component({
   selector: 'app-firma-pregled-usluga',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FirmaPregledUslugaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private firmaService: FirmaService) { }
 
   ngOnInit() {
+    this.firma = JSON.parse(localStorage.getItem('korisnik'));
+    this.firmaService.dohvatiUsluge(this.firma._id).subscribe((odgovor : any) => {
+      this.usluge = odgovor;
+    });
   }
+
+  firma;
+  usluge = [];
 
 }

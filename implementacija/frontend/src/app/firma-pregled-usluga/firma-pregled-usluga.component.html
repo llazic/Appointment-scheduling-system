@@ -1,1 +1,28 @@
 <app-firma-nav></app-firma-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 center">
+            <h1>Usluge</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-md-8 offset-md-2 center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Naziv</th>
+                        <th scope="col">Cena</th>
+                        <th scope="col">Dužina termina</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let u of usluge">
+                        <td>{{u.naziv}}</td>
+                        <td>{{u.cena}} rsd</td>
+                        <td>{{u.trajanje}} min</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

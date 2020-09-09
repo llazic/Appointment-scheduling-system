@@ -18,6 +18,11 @@ import { FirmaPregledZaposlenihComponent } from './firma-pregled-zaposlenih/firm
 import { FirmaDodajZaposlenogComponent } from './firma-dodaj-zaposlenog/firma-dodaj-zaposlenog.component';
 import { FirmaDodajUsluguComponent } from './firma-dodaj-uslugu/firma-dodaj-uslugu.component';
 import { FirmaPregledUslugaComponent } from './firma-pregled-usluga/firma-pregled-usluga.component';
+import { ZaposleniPromeniLozinkuComponent } from './zaposleni-promeni-lozinku/zaposleni-promeni-lozinku.component';
+import { FirmaIzmeniUslugeZaposlenogComponent } from './firma-izmeni-usluge-zaposlenog/firma-izmeni-usluge-zaposlenog.component';
+import { FirmaDodeliRadnoVremeComponent } from './firma-dodeli-radno-vreme/firma-dodeli-radno-vreme.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -35,12 +40,17 @@ import { FirmaPregledUslugaComponent } from './firma-pregled-usluga/firma-pregle
     FirmaDodajZaposlenogComponent,
     FirmaDodajUsluguComponent,
     FirmaPregledUslugaComponent,
+    ZaposleniPromeniLozinkuComponent,
+    FirmaIzmeniUslugeZaposlenogComponent,
+    FirmaDodeliRadnoVremeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

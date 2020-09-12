@@ -6,21 +6,20 @@ Gost:
 	1. Registracija (korisnik + firma)
 	2. Logovanje
 Klijent:
-	1. Pretraga firmi (+ preporucene?)
+	1. Pretraga firmi
 		- po imenu
 		- po usluzi
 	2. Pregled firmi
 	3. Zakazivanje termina
 	4. Pregled zakazanih termina
-	5. Otkazivanje termina (uz slanje mejla zaposlenom?)
+	5. Otkazivanje termina (uz uslovno slanje mejla zaposlenom)
 Firma:
 	1. Kreiranje zaposlenog
 	2. Uklanjanje zaposlenog
 	3. Upravljanje zaduženjima zaposlenog
 	4. Upravljanje uslugama
 Zaposleni:
-	1. Pregled zakazanih termina (npr. po danu)
-	2. Otkazivanje termina korisnicima (uz slanje mejla klijentu i firmi)
+	1. Pregled zakazanih termina
 	3. Promena lozinke
 	
 + Logout za sve ulogovane

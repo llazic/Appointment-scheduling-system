@@ -11,6 +11,7 @@ const { FirmaModel } = require('../modeli/firma-model');
 /** Registracija klijenta **/
 router.route('/klijent').post(async (req, res, next) => {
     const result = validacija.validirajKlijenta(req.body);
+    if (result.error) console.log(result.error);
     if (result.error) return res.status(400).json({ poruka : 'Neispravan zahtev.' });
 
     const k = await KorisnikModel.find({ email: req.body.email }).exec();
@@ -36,6 +37,7 @@ router.route('/klijent').post(async (req, res, next) => {
 /** Pravljenje zaposlenog **/
 router.route('/zaposleni').post(async (req, res, next) => {
     const result = validacija.validirajZaposlenog(req.body);
+    if (result.error) console.log(result.error);
     if (result.error) return res.status(400).json({ poruka : 'Neispravan zahtev.' });
 
     const firme = await FirmaModel.find({ _id : req.body.firma_id }).exec();
@@ -79,6 +81,7 @@ router.route('/zaposleni').post(async (req, res, next) => {
 /** Registracija firme **/
 router.route('/firma').post(async (req, res, next) => {
     const result = validacija.validirajFirmu(req.body);
+    if (result.error) console.log(result.error);
     if (result.error) return res.status(400).json({ poruka : 'Neispravan zahtev.', error : result.error.details });
 
     const k = await KorisnikModel.find({ email: req.body.email }).exec();

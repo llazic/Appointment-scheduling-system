@@ -11,8 +11,11 @@ export class KlijentNavComponent implements OnInit {
 
   constructor(private router: Router) { }
 
+  klijent;
+
   ngOnInit() {
     let korisnik = JSON.parse(localStorage.getItem('korisnik'));
+    this.klijent = korisnik;
     switch (zajednickeFunkcionalnosti.tipKorisnika(korisnik)) {
       case 'klijent':
         return;
@@ -28,4 +31,7 @@ export class KlijentNavComponent implements OnInit {
     }
   }
 
+  odjava() {
+    zajednickeFunkcionalnosti.odjava(this.router);
+  }
 }

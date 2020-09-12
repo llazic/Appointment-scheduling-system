@@ -1,0 +1,28 @@
+<app-klijent-nav></app-klijent-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <h1>Zakazani termin</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h5>
+                        {{firma.naziv}}<br>
+                        Adresa: {{firma.adresa}}<br>
+                        Datum: {{ispisiDatum(termin.datum)}}<br>
+                        Vreme: {{ispisTermina(termin.vreme_pocetka)}}<br>
+                        Kod: {{zaposleni.ime}} {{zaposleni.prezime}}
+                    </h5>
+                    <div class="center" *ngIf="datumUBuducnosti()">
+                        <button class="btn btn-danger" (click)="otkaziTermin()">Otkaži</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

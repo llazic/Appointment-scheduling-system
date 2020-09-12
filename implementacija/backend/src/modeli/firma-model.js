@@ -7,7 +7,7 @@ let Firma = new Schema({
     hash_lozinke: String,
     naziv: String,
     opis: String,
-    lokacija: String
+    adresa: String
 });
 
 exports.FirmaModel = mongoose.model('Firma', Firma, 'firme');

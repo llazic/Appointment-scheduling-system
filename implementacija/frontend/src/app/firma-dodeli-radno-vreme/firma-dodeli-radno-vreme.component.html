@@ -6,102 +6,105 @@
             <h1>Kada radi {{zaposleni.ime}} {{zaposleni.prezime}}?</h1>
             <br>
         </div>
-        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker>
-            <!-- <input type="text" placeholder="Daterangepicker" class="form-control" bsDaterangepicker> -->
-            <!-- <div class="poruka">{{poruka}}</div>
+        <div class="col col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+            <div class="poruka">{{poruka}}</div>
             <br>
             <div class="card bg-light">
                 <div class="card-body">
                     <form>
-                        <label>Datum početka važenja</label>
-                        <table class='table' width="100%">
+                        <span *ngIf="korak === 1">
+                            <div class="form-group">
+                                <label for="datumOd">Datum početka važenja</label>
+                                <input type="text" placeholder="Mesec/Dan/Godina" class="form-control" bsDatepicker
+                                    [(ngModel)]="datumOd" name="datumOd" autocomplete="off" id="datumOd">
+                            </div>
+                            <div class="form-group">
+                                <label for="datumDo">Datum kraja važenja</label>
+                                <input type="text" placeholder="Mesec/Dan/Godina" class="form-control" bsDatepicker
+                                    [(ngModel)]="datumDo" name="datumDo" autocomplete="off" id="datumDo">
+                            </div>
+                        </span>
+                        <span *ngIf="korak === 2">
+                            <div class="form-group">
+                                <label>Početak radnog vremena</label>
+                                <table class="table">
+                                    <tr>
+                                        <td width='45%'>
+                                            <select type="number" class="form-control" id="satOd" name="satOd"
+                                                [(ngModel)]="satOd" width='2'>
+                                                <option>Sati</option>
+                                                <option *ngFor="let s of sati" value="{{s}}">{{s}}</option>
+                                            </select>
+                                        </td>
+                                        <td>:</td>
+                                        <td width='45%'>
+                                            <select type="number" class="form-control" id="minutOd" name="minutOd"
+                                                [(ngModel)]="minutOd">
+                                                <option>Minuta</option>
+                                                <option *ngFor="let m of minuti; let i = index" value="{{m}}">{{m}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <label>Kraj radnog vremena</label>
+                                <table class="table">
+                                    <tr>
+                                        <td width='45%'>
+                                            <select type="number" class="form-control" id="satDo" name="satDo"
+                                                [(ngModel)]="satDo" width='2'>
+                                                <option>Sati</option>
+                                                <option *ngFor="let s of sati" value="{{s}}">{{s}}</option>
+                                            </select>
+                                        </td>
+                                        <td>:</td>
+                                        <td width='45%'>
+                                            <select type="number" class="form-control" id="minutDo" name="minutDo"
+                                                [(ngModel)]="minutDo">
+                                                <option>Minuta</option>
+                                                <option *ngFor="let m of minuti; let i = index" value="{{m}}">{{m}}
+                                                </option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </span>
+                        <span *ngIf="korak === 3">
+                            <label>Kojim danima će raditi?</label>
+                            <div *ngFor="let d of dani; let i = index" class="form-check">
+                                <input class="form-check-input" type="checkbox" id="{{d}}" value="i+1"
+                                    [(ngModel)]="odabraniRadniDani[i]" name="d">
+                                <label class="form-check-label" for="{{d}}">{{d}}</label>
+                            </div>
+                        </span>
+                        <span *ngIf="korak === 4">
+                            <h5>
+                                Zaposleni {{zaposleni.ime}} {{zaposleni.prezime}} će raditi:<br>
+                                Od: {{datumOd.getDate()}}.{{datumOd.getMonth() + 1}}.{{datumOd.getFullYear()}}.<br>
+                                Do: {{datumDo.getDate()}}.{{datumDo.getMonth() + 1}}.{{datumDo.getFullYear()}}.<br>
+                                Danima:<br>
+                                <span *ngFor="let d of dani; let i = index"><span *ngIf="odabraniRadniDani[i]">&nbsp;&nbsp;&nbsp;&nbsp;{{d}}<br></span></span>
+                                Radno vreme: {{satOd}}:{{minutOd}}-{{satDo}}:{{minutDo}}
+                            </h5>
+                        </span>
+                        <table width="100%">
                             <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="godinaOd" id="godinaOd"
-                                            [(ngModel)]="godinaOd">
-                                            <option selected>Godina</option>
-                                            <option *ngFor="let g of godine" value="{{g}}">{{g}}</option>
-                                        </select>
-                                    </div>
+                                <td width="50%">
+                                    <button *ngIf="korak !== 1" type="submit" class="btn btn-primary max_sirina" (click)='prethodniKorak()'>Prethodno</button>
+                                    <button *ngIf="korak === 1" type="submit" class="btn btn-primary max_sirina" (click)='prethodniKorak()' disabled>Prethodno</button>
                                 </td>
                                 <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="mesecOd" id="mesecOd" [(ngModel)]="mesecOd">
-                                            <option>Mesec</option>
-                                            <option *ngFor="let m of meseci; let i = index" value="{{i}}">{{m}}</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="danOd" id="danOd" [(ngModel)]="danOd">
-                                            <option>Dan</option>
-                                            <option *ngFor="let d of dani" value="{{d}}">{{d}}</option>
-                                        </select>
-                                    </div>
+                                    <button *ngIf="korak !== 4" type="submit" class="btn btn-success max_sirina" (click)='sledeciKorak()'>Sledeće</button>
+                                    <button *ngIf="korak === 4" type="submit" class="btn btn-success max_sirina" (click)='potvrdi()'>Potvrdi</button>
                                 </td>
                             </tr>
                         </table>
-                        <label>Datum kraja važenja</label>
-                        <table class='table' width="100%">
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="godinaDo" id="godinaDo"
-                                            [(ngModel)]="godinaDo">
-                                            <option selected>Godina</option>
-                                            <option *ngFor="let g of godine" value="{{g}}">{{g}}</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="mesecDo" id="mesecDo" [(ngModel)]="mesecDo">
-                                            <option>Mesec</option>
-                                            <option *ngFor="let m of meseci; let i = index" value="{{i}}">{{m}}</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="danDo" id="danDo" [(ngModel)]="danDo">
-                                            <option>Dan</option>
-                                            <option *ngFor="let d of dani" value="{{d}}">{{d}}</option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <label>Početak radnog vremena</label>
-                        <table id="tabela_do" class='table' width="100%">
-                            <tr>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="satOd" id="satOd"
-                                            [(ngModel)]="satOd">
-                                            <option>Sat</option>
-                                            <option *ngFor="let s of sati" value="{{s}}">{{s}}</option>
-                                        </select>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group">
-                                        <select class="form-control" name="minutOd" id="minutOd" [(ngModel)]="minutOd">
-                                            <option>Minut</option>
-                                            <option *ngFor="let m of minuti; let i = index" value="{{m}}">{{m}}</option>
-                                        </select>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                        <div class="center">
-                            <button type="submit" class="btn btn-success" (click)='dodeli()'>Dodeli</button>
-                        </div>
                     </form>
-                </div> -->
-            <!-- </div> -->
+                </div>
+            </div>
         </div>
     </div>
 </div>

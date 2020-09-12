@@ -12,6 +12,9 @@ const { FirmaModel } = require('./modeli/firma-model');
 const registracije = require('./routes/registracije');
 const zaposleni = require('./routes/zaposleni');
 const usluge = require('./routes/usluge');
+const termini = require('./routes/termini');
+const { RadniDaniModel } = require('./modeli/radni-dan-model');
+const { UslugaModel } = require('./modeli/usluga-model');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,6 +22,18 @@ app.use(bodyParser.json());
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => console.log('Connected to db'));
 
 const router = express.Router();
+
+app.get('/firma/:firma_id', async(req, res, next) => {
+    const firma_id = req.params.firma_id;
+    const firma = await FirmaModel.findById(firma_id).exec();
+    const odgovor = {
+        _id : firma._id,
+        naziv : firma.naziv,
+        opis : firma.opis,
+        adresa : firma.adresa
+    }
+    res.json(odgovor);
+})
 
 app.post('/prijava', async (req, res, next) => {
     if (!req.body.email || !req.body.lozinka) return res.sendStatus(400);
@@ -40,10 +55,33 @@ app.post('/prijava', async (req, res, next) => {
     return res.json({ poruka: 'Ne postoji korisnik sa tom email adresom.' });
 });
 
+app.get('/pretraga/:pojam', async (req, res, next) => {
+    const pojam = req.params.pojam;
+
+    let pojmovi = pojam.split(' ');
+    let nizPojmova = []
+    for (let p of pojmovi) {
+        let re = `.*${p}.*`;
+        let pojam = new RegExp(re, "i");
+        nizPojmova.push(pojam);
+    }
+
+    let firme = await FirmaModel.find({ naziv: { $in: nizPojmova } }).select('naziv opis adresa').exec();
+    let usluge = await UslugaModel.find({ naziv: { $in: nizPojmova } }).select('naziv firma_id').exec();
+
+    for (let u of usluge) {
+        if (!firme.find(f => f._id.equals(u.firma_id))) {
+            let novaFirma = await FirmaModel.findOne({ _id: u.firma_id }).select('naziv opis adresa').exec();
+            firme.push(novaFirma);
+        }
+    }
+    res.json(firme);
+});
 
 app.use('/', zaposleni);
 app.use('/', registracije);
 app.use('/', usluge);
+app.use('/', termini);
 app.use('/', router);
 const PORT = 3232;
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });

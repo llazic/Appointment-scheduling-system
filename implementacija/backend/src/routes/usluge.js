@@ -11,6 +11,7 @@ router.get('/usluge/:firma_id', async function(req, res, next) {
 
 router.post('/usluga', async function(req, res, next) {
     const result = validacija.validirajUslugu(req.body);
+    if (result.error) console.log(result.error);
     if (result.error) return res.status(400).json({ poruka : 'Neispravan zahtev.' });
 
     const firma = await FirmaModel.find({ _id : req.body.firma_id }).exec();

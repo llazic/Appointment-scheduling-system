@@ -1,0 +1,47 @@
+<app-klijent-nav></app-klijent-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-10 offset-md-1 center">
+            <h1>{{firma.naziv}}</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-md-8 offset-md-2">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Informacije</h5>
+                    <table class="table">
+                        <tr>
+                            <td>Adresa:</td>
+                            <td>{{firma.adresa}}</td>
+                        </tr>
+                        <tr>
+                            <td>Opis:</td>
+                            <td>{{firma.opis}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <br><br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <h5 class="card-title">Usluge</h5>
+                    <table class="table center">
+                        <tr>
+                            <th>Naziv</th>
+                            <th>Trajanje</th>
+                            <th>Cena</th>
+                            <th>Opcije</th>
+                        </tr>
+                        <tr *ngFor="let u of usluge">
+                            <td>{{u.naziv}}</td>
+                            <td>{{u.trajanje}} min</td>
+                            <td>{{u.cena}} rsd</td>
+                            <td><button class="btn btn-success" (click)="zakazi(u)">Zakaži</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<app-klijent-nav></app-klijent-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <h1>Moji termini</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <table class="table">
+                <tr>
+                    <th>Datum</th>
+                    <th>Vreme</th>
+                    <th>Usluga</th>
+                    <th>Opcije</th>
+                </tr>
+                <tr *ngFor="let t of termini">
+                    <td>{{ispisiDatum(t.datum)}}</td>
+                    <td>{{ispisiVremePocetka(t.vreme_pocetka)}}</td>
+                    <td>{{t.usluga.naziv}}</td>
+                    <td><button class="btn btn-primary" (click)="pregledTermina(t)">Pregled</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -9,7 +9,7 @@
         <div *ngIf="zaposleni.length === 0" class="col col-12 col-md-8 offset-md-2 center">
             <h4>Trenutno nemate zaposlene.</h4>
         </div>
-        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+        <div *ngIf="zaposleni.length !== 0" class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
             <div class="poruka">{{poruka}}</div>
             <br>
             <table class="table">

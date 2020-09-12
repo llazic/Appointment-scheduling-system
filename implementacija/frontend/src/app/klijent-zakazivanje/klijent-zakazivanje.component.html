@@ -1,0 +1,90 @@
+<app-klijent-nav></app-klijent-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <h1>Zakazivanje termina</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100" id="napredak">
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <span *ngIf="korak === 1">
+                            <div class="form-group">
+                                <label for="odabraniDatum">Odaberite datum</label>
+                                <input type="text" placeholder="Mesec/Dan/Godina" class="form-control" bsDatepicker
+                                    [(ngModel)]="odabraniDatum" name="odabraniDatum" autocomplete="off"
+                                    id="odabraniDatum">
+                            </div>
+                        </span>
+                        <span *ngIf="korak === 2">
+                            <div *ngIf="radniDani.length === 0">
+                                Nažalost nema slobodnih termina izabranog datuma.<br>
+                                Vratite se na prethodni korak i izaberite drugi datum.
+                            </div>
+                            <div *ngIf="radniDani.length !== 0" class="form-group">
+                                <label for="odabranZaposleni">Odaberite zaposlenog</label>
+                                <select class="form-control" name="odabranZaposleni" id="odabranZaposleni"
+                                    [(ngModel)]="odabranZaposleni">
+                                    <option>Odaberite</option>
+                                    <option *ngFor="let r of radniDani" value="{{r.zaposleni_id}}">{{r.ime}}
+                                        {{r.prezime}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div *ngIf="radniDani.length !== 0" class="form-group">
+                                <label for="odabranoVreme">Odaberite vreme</label>
+                                <select class="form-control" name="odabranoVreme" id="odabranoVreme"
+                                    [(ngModel)]="odabranoVreme">
+                                    <option>Odaberite</option>
+                                    <option *ngFor="let t of slobodniTerminiOdabranogZaposlenog()" value="{{t}}">
+                                        {{ispisTermina(t)}}
+                                    </option>
+                                </select>
+                            </div>
+                        </span>
+                        <span *ngIf="korak === 3">
+                            <h5>Pregled</h5>
+                            &nbsp;&nbsp;&nbsp;{{firma.naziv}}<br>
+                            &nbsp;&nbsp;&nbsp;Adresa: {{firma.adresa}}<br>
+                            &nbsp;&nbsp;&nbsp;Datum: {{ispisiDatum(odabraniDatum)}}<br>
+                            &nbsp;&nbsp;&nbsp;Vreme: {{ispisTermina(odabranoVreme)}}<br>
+                            &nbsp;&nbsp;&nbsp;Kod: {{ispisZaposlenog(odabranZaposleni)}}
+                        </span>
+                        <br>
+                        <table width="100%">
+                            <tr>
+                                <td width="50%">
+                                    <button *ngIf="korak !== 1 && korak !== 4" type="submit"
+                                        class="btn btn-primary max_sirina" (click)='prethodniKorak()'>Prethodno</button>
+                                    <button *ngIf="korak === 1" type="submit" class="btn btn-primary max_sirina"
+                                        (click)='prethodniKorak()' disabled>Prethodno</button>
+                                </td>
+                                <td>
+                                    <button *ngIf="korak === 2 && radniDani.length === 0" type="submit"
+                                        class="btn btn-success max_sirina" (click)='sledeciKorak()'
+                                        disabled>Sledeće</button>
+                                    <button *ngIf="korak !== 3 && (korak !== 2 || radniDani.length !== 0)" type="submit"
+                                        class="btn btn-success max_sirina" (click)='sledeciKorak()'>Sledeće</button>
+                                    <button *ngIf="korak === 3" type="submit" class="btn btn-success max_sirina"
+                                        (click)='potvrdi()'>Potvrdi</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

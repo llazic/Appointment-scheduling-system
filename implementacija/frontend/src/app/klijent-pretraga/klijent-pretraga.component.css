@@ -1,0 +1,15 @@
+.width100 {
+  width: 100%;
+}
+
+.width85 {
+    width: 85%;
+}
+
+.width15 {
+    width: 15%;
+}
+
+.card-columns {
+    display: inline-block; 
+}

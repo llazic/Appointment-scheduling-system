@@ -7,8 +7,26 @@ const slanjeMaila = require('../slanje-maila');
 const validacija = require('../validacija');
 
 
-router.get('/zaposleni/:firma_id', async (req, res, next) => {
+router.get('/zaposleni/:zaposleni_id', async (req, res, next) => {
+    let zaposleni = await KorisnikModel.findOne({ _id: req.params.zaposleni_id, tip: 'zaposleni' }).exec();
+    let odgovor = {
+        ime : zaposleni.ime,
+        prezime : zaposleni.prezime,
+        usluge : zaposleni.usluge,
+        firma_id : zaposleni.firma_id, 
+        tip : zaposleni.tip,
+    }
+    res.json(odgovor);
+});
+
+
+router.get('/:firma_id/zaposleni/', async (req, res, next) => {
     let zaposleni = await KorisnikModel.find({ firma_id: req.params.firma_id }).exec();
+    res.json(zaposleni);
+})
+
+router.get('/zaposleni/:firma_id/:usluga_id', async (req, res, next) => {
+    let zaposleni = await KorisnikModel.find({ firma_id: req.params.firma_id, usluge: req.params.usluga_id }).exec();
     res.json(zaposleni);
 })
 
@@ -33,7 +51,6 @@ router.delete('/zaposleni/:zaposleni_id', async (req, res, next) => {
 })
 
 router.put('/zaposleni/:zaposleni_id', async (req, res, next) => {
-    console.log(req.body.usluge);
     let zaposleni = await KorisnikModel.updateOne({ _id: req.params.zaposleni_id }, { $set: { usluge: req.body.usluge } }).exec();
 
     res.json(zaposleni);

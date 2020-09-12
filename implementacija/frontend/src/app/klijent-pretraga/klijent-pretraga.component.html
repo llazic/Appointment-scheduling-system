@@ -1,0 +1,39 @@
+<app-klijent-nav></app-klijent-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-md-10 offset-md-1 center">
+            <h1>Traži šta ti treba</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-md-10 offset-md-1 center">
+            <form>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control width85" placeholder="Usluga, naziv firme..."
+                        aria-label="Recipient's username" aria-describedby="basic-addon2" name="pojam"
+                        [(ngModel)]="pojam" id="pojam">
+                    <div class="input-group-append width15">
+                        <button class="btn btn-success width100" type="submit" (click)="trazi()">Traži</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="klijentPretrazio" class="col col-12 col-md-10 offset-md-1">
+            <div *ngIf="rezultatPretrage.length === 0" class="center">
+                <h5>Ništa nije pronađeno.</h5>
+            </div>
+            <div *ngIf="rezultatPretrage.length !== 0">
+                <div class="card-columns">
+                    <div *ngFor="let firma of rezultatPretrage" class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{firma.naziv}}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{firma.adresa}}</h6>
+                            <p class="card-text">{{skrati(firma.opis)}}</p>
+                            <button class="btn btn-primary max_sirina" (click)="pregled(firma)">Vidi</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

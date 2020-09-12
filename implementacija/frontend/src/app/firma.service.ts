@@ -36,7 +36,7 @@ export class FirmaService {
   }
 
   dohvatiZaposlene(firma_id): any {
-    return this.http.get(`${this.uri}/zaposleni/${firma_id}`);
+    return this.http.get(`${this.uri}/${firma_id}/zaposleni`);
   }
 
   otpustiZaposlenog(zaposleni_id) {
@@ -48,5 +48,17 @@ export class FirmaService {
       usluge : usluge
     }
     return this.http.put(`${this.uri}/zaposleni/${zaposleni_id}`, data);
+  }
+
+  dodajRadnoVreme(zaposleni_id, datumOd, datumDo, vremeOd, vremeDo, odabraniRadniDani) {
+    const data = {
+      zaposleni_id : zaposleni_id,
+      datumOd : datumOd,
+      datumDo : datumDo,
+      vremeOd : vremeOd,
+      vremeDo : vremeDo,
+      odabraniRadniDani : odabraniRadniDani
+    }
+    return this.http.post(`${this.uri}/termini/kreiraj`, data);
   }
 }

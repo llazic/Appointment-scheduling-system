@@ -27,8 +27,8 @@ exports.validirajKlijenta = function (klijent) {
 
 exports.validirajZaposlenog = function (zaposleni) {
     const schema = Joi.object({
-        _id : Joi.objectId(),
-        
+        _id: Joi.objectId(),
+
         ime: Joi.string()
             .pattern(new RegExp('^[a-zA-Z]{1,30}$'))
             .min(1)
@@ -102,4 +102,74 @@ exports.validirajUslugu = function (usluga) {
     });
 
     return schema.validate(usluga);
+}
+
+exports.validirajRadnoVreme = function (radnoVreme) {
+    const schema = Joi.object({
+        zaposleni_id: Joi.objectId()
+            .required(),
+
+        datumOd: Joi.date()
+            .required(),
+
+        datumDo: Joi.date()
+            .required(),
+
+        vremeOd: Joi.number()
+            .required(),
+
+        vremeDo: Joi.number()
+            .required(),
+
+        odabraniRadniDani: Joi.array()
+            .items(
+                Joi.bool()
+            )
+            .required()
+    });
+
+    return schema.validate(radnoVreme);
+}
+
+exports.validirajTermin = function (termin) {
+    const schema = Joi.object({
+        zaposleni_id: Joi.objectId()
+            .required(),
+
+        klijent_id: Joi.objectId()
+            .required(),
+
+        usluga_id: Joi.objectId()
+            .required(),
+
+        datum: Joi.date()
+            .required(),
+
+        vreme_pocetka: Joi.number()
+            .integer()
+            .min(0)
+            .max(1430)
+            .required()
+    });
+
+    return schema.validate(termin);
+}
+
+exports.validirajZahtevZaOtkazivanjeTermina = function (termin) {
+    const schema = Joi.object({
+        zaposleni_id: Joi.objectId().required(),
+        datum: Joi.date().required(),
+        vreme_pocetka: Joi.number()
+            .integer()
+            .min(0)
+            .max(1430)
+            .required(),
+        vreme_zavrsetka: Joi.number()
+            .integer()
+            .min(0)
+            .max(1430)
+            .required(),
+    });
+
+    return schema.validate(termin);
 }

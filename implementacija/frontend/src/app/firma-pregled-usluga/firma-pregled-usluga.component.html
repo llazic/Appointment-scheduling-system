@@ -6,7 +6,10 @@
             <h1>Usluge</h1>
             <br>
         </div>
-        <div class="col col-12 col-md-8 offset-md-2 center">
+        <div *ngIf="usluge.length === 0" class="col col-12 col-md-8 offset-md-2 center">
+            <h4>Trenutno ne pružate usluge.<br> Da biste dodali novu uslugu idite na Usluge>Dodaj uslugu.</h4>
+        </div>
+        <div *ngIf="usluge.length !== 0" class="col col-12 col-md-8 offset-md-2 center">
             <table class="table">
                 <thead>
                     <tr>

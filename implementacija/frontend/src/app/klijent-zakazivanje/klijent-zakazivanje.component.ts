@@ -3,6 +3,7 @@ import { KlijentService } from '../klijent.service';
 import { Router } from '@angular/router';
 import * as validacija from '../validacija';
 import { ispisNaDveCifre, ispisDatuma } from '../zajednicke-funkcionalnosti';
+import { idLocale } from 'ngx-bootstrap/chronos';
 
 declare var podesiProgressBar: Function;
 
@@ -132,7 +133,10 @@ export class KlijentZakazivanjeComponent implements OnInit {
   datumOk() {
     if (this.odabraniDatum == 'Invalid Date') return this.poruka = 'Unesite ispravan datum u formatu Mesec/Dan/Godina.';
     let sada = new Date();
-    if (this.odabraniDatum <= sada) return this.poruka = 'Odaberite datum u budućnosti.';
+    sada.setHours(0, 0, 0, 0);
+    let od = new Date(this.odabraniDatum);
+    od.setHours(0, 0, 0, 0);
+    if (this.odabraniDatum < sada) return this.poruka = 'Odaberite datum u budućnosti.';
     return true;
   }
 }

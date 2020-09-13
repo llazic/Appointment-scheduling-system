@@ -40,7 +40,7 @@ export class FirmaPregledZaposlenihComponent implements OnInit {
     this.router.navigate(['/firma/zaposleni/usluge']);
   }
 
-  dodeliRadnoVreme(z){
+  pregledRadnogVremena(z){
     localStorage.setItem('zaposleni', JSON.stringify(z));
     this.router.navigate(['/firma/zaposleni/radno_vreme']);
   }

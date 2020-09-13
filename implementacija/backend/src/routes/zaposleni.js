@@ -1,22 +1,13 @@
 const express = require('express');
 const { KorisnikModel } = require('../modeli/korisnik-model');
 const { RadniDaniModel } = require('../modeli/radni-dan-model');
-const { FirmaModel } = require('../modeli/firma-model');
 const router = express.Router();
 const slanjeMaila = require('../slanje-maila');
-const validacija = require('../validacija');
 
 
 router.get('/zaposleni/:zaposleni_id', async (req, res, next) => {
-    let zaposleni = await KorisnikModel.findOne({ _id: req.params.zaposleni_id, tip: 'zaposleni' }).exec();
-    let odgovor = {
-        ime : zaposleni.ime,
-        prezime : zaposleni.prezime,
-        usluge : zaposleni.usluge,
-        firma_id : zaposleni.firma_id, 
-        tip : zaposleni.tip,
-    }
-    res.json(odgovor);
+    let zaposleni = await KorisnikModel.findOne({ _id: req.params.zaposleni_id, tip: 'zaposleni' }).select('ime prezime usluge firma_id tip').exec();
+    res.json(zaposleni);
 });
 
 

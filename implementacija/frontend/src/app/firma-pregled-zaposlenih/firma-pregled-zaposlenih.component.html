@@ -22,7 +22,7 @@
                 <tbody>
                     <tr *ngFor="let z of zaposleni">
                         <td>{{z.ime}} {{z.prezime}}</td>
-                        <td><button type="button" class="btn btn-sm btn-success" (click)="dodeliRadnoVreme(z)">
+                        <td><button type="button" class="btn btn-sm btn-success" (click)="pregledRadnogVremena(z)">
                                 Radno vreme</button>&nbsp;&nbsp;
                             <button type="button" class="btn btn-primary btn-sm"
                                 (click)="promeniUsluge(z)">Usluge</button>&nbsp;&nbsp;

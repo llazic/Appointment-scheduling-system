@@ -25,14 +25,8 @@ const router = express.Router();
 
 app.get('/firma/:firma_id', async(req, res, next) => {
     const firma_id = req.params.firma_id;
-    const firma = await FirmaModel.findById(firma_id).exec();
-    const odgovor = {
-        _id : firma._id,
-        naziv : firma.naziv,
-        opis : firma.opis,
-        adresa : firma.adresa
-    }
-    res.json(odgovor);
+    const firma = await FirmaModel.findById(firma_id).select('naziv opis adresa').exec();
+    res.json(firma);
 })
 
 app.post('/prijava', async (req, res, next) => {

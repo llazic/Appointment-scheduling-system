@@ -27,6 +27,7 @@ import { KlijentPregledFirmeComponent } from './klijent-pregled-firme/klijent-pr
 import { KlijentZakazivanjeComponent } from './klijent-zakazivanje/klijent-zakazivanje.component';
 import { KlijentPregledSvojihTerminaComponent } from './klijent-pregled-svojih-termina/klijent-pregled-svojih-termina.component';
 import { KlijentPregledJednogTerminaComponent } from './klijent-pregled-jednog-termina/klijent-pregled-jednog-termina.component';
+import { FirmaPregledRadnogVremenaComponent } from './firma-pregled-radnog-vremena/firma-pregled-radnog-vremena.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { KlijentPregledJednogTerminaComponent } from './klijent-pregled-jednog-t
     KlijentZakazivanjeComponent,
     KlijentPregledSvojihTerminaComponent,
     KlijentPregledJednogTerminaComponent,
+    FirmaPregledRadnogVremenaComponent,
   ],
   imports: [
     BrowserModule,

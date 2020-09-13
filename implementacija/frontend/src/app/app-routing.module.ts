@@ -15,13 +15,15 @@ import { KlijentPregledFirmeComponent } from './klijent-pregled-firme/klijent-pr
 import { KlijentZakazivanjeComponent } from './klijent-zakazivanje/klijent-zakazivanje.component';
 import { KlijentPregledSvojihTerminaComponent } from './klijent-pregled-svojih-termina/klijent-pregled-svojih-termina.component';
 import { KlijentPregledJednogTerminaComponent } from './klijent-pregled-jednog-termina/klijent-pregled-jednog-termina.component';
+import { FirmaPregledRadnogVremenaComponent } from './firma-pregled-radnog-vremena/firma-pregled-radnog-vremena.component';
 
 
 const routes: Routes = [
   { path: '', component: PrijavaComponent },
   { path: 'firma/dodaj/usluga', component: FirmaDodajUsluguComponent },
   { path: 'firma/dodaj/zaposleni', component: FirmaDodajZaposlenogComponent },
-  { path: 'firma/zaposleni/radno_vreme', component: FirmaDodeliRadnoVremeComponent },
+  { path: 'firma/zaposleni/radno_vreme', component: FirmaPregledRadnogVremenaComponent },
+  { path: 'firma/zaposleni/dodeli_radno_vreme', component: FirmaDodeliRadnoVremeComponent },
   { path: 'firma/pocetna', component: FirmaPregledZaposlenihComponent },
   { path: 'firma/zaposleni', component: FirmaPregledZaposlenihComponent },
   { path: 'firma/zaposleni/usluge', component: FirmaIzmeniUslugeZaposlenogComponent },

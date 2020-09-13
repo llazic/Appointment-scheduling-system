@@ -61,4 +61,12 @@ export class FirmaService {
     }
     return this.http.post(`${this.uri}/termini/kreiraj`, data);
   }
+
+  dohvatiRadnoVreme(zaposleni_id, datum){
+    const data = {
+      zaposleni_id : zaposleni_id,
+      datum : datum,
+    }
+    return this.http.get(`${this.uri}/termini/zaposleni/${zaposleni_id}/${datum}`);
+  }
 }

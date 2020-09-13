@@ -1,0 +1,49 @@
+<app-firma-nav></app-firma-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <h1>{{zaposleni.ime}} {{zaposleni.prezime}} raspored</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <form>
+                <table width="100%">
+                    <tr>
+                        <td align="left">
+                            <input type="text" placeholder="Mesec/Dan/Godina" class="form-control" bsDatepicker
+                                [(ngModel)]="datum" name="datum" autocomplete="off" id="datum">
+                        </td>
+                        <td align="right">
+                            <button class="btn btn-success" (click)="dodeliRadnoVreme()">Dodeli radno vreme</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+            <div *ngIf="termini.length === 0">
+                <h5>
+                    {{zaposleni.ime}} {{zaposleni.prezime}} ne radi odabranog datuma. <br>
+                    Možete dodeliti radno vreme klikom na dugme "Dodeli radno vreme"
+                </h5>
+            </div>
+            <table *ngIf="termini.length !== 0" class="table">
+                <tr>
+                    <th>Vreme</th>
+                    <th>Usluga</th>
+                    <th>Klijent</th>
+                </tr>
+                <tr *ngFor="let t of termini">
+                    <td>{{ispisiVreme(t)}}</td>
+                    <ng-container *ngIf="t.zauzeto">
+                        <td>{{t.usluga.naziv}}</td>
+                        <td>{{t.klijent.ime}} {{t.klijent.prezime}}</td>
+                    </ng-container>
+                    <ng-container *ngIf="!t.zauzeto">
+                        <td colspan="2">Slobodan termin</td>
+                    </ng-container>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

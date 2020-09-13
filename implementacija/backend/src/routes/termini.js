@@ -19,6 +19,26 @@ router.get('/termini/:firma_id/:datum', async (req, res, next) => {
     res.json(radniDani);
 });
 
+router.get('/termini/zaposleni/:zaposleni_id/:datum', async (req, res, next) => {
+    let datum = new Date(req.params.datum);
+    datum.setHours(0, 0, 0, 0);
+    let radniDan = await RadniDaniModel.findOne({ zaposleni_id : req.params.zaposleni_id, datum : datum}).exec();
+    radniDan = radniDan.toObject();
+    if (!radniDan) return res.json([]);
+
+    for (let i = 0; i < radniDan.termini.length; i++){
+        let termin = radniDan.termini[i];
+        if (termin.zauzeto) {
+            const klijent = await KorisnikModel.findById(termin.klijent_id).select('ime prezime').exec();
+            const usluga = await UslugaModel.findById(termin.usluga_id).select('naziv cena').exec();
+            radniDan.termini[i].klijent = klijent;
+            radniDan.termini[i].usluga = usluga;
+        }
+    }
+
+    res.json(radniDan.termini);
+});
+
 router.post('/termini/kreiraj', async (req, res, next) => {
     const result = validacija.validirajRadnoVreme(req.body);
     if (result.error) console.log(result.error);
@@ -78,16 +98,25 @@ router.post('/termin/zakazi', async (req, res, next) => {
     const klijent = await KorisnikModel.findById(req.body.klijent_id).exec();
     if (!klijent || klijent.tip !== 'klijent') return res.status(404).json({ poruka: 'Klijent nije pronađen.' });
 
+    const vreme_pocetka = Number(req.body.vreme_pocetka);
+    const vreme_zavrsetka = vreme_pocetka + usluga.trajanje;
+    const satPocetka = Math.floor(vreme_pocetka / 60);
+    const minutPocetka = vreme_pocetka % 60;
     let datum = new Date(req.body.datum);
-    datum.setHours(0, 0, 0, 0);
+    datum.setHours(satPocetka, minutPocetka, 0, 0);
     let sada = new Date();
-    if (datum <= sada) return res.status(400).json({ poruka: 'Termin koji se zakazuje mora biti u budućnosti.' });
+    if (datum <= sada) return res.json({ poruka: 'Termin koji se zakazuje mora biti u budućnosti.' });
+
+    let saljiMejl = false;
+    datum.setHours(0, 0, 0, 0);
+    let danas = new Date();
+    danas.setHours(0, 0, 0, 0);
+    //ako se zakazuje termin koji je danas kasnije u toku dana, treba obavestiti zaposlenog o tome
+    if (datum.getTime() === danas.getTime()) saljiMejl = true;
 
     let radniDan = await RadniDaniModel.findOne({ datum: datum, zaposleni_id: zaposleni._id }).exec();
     if (!radniDan) return res.status(404).json({ poruka: 'Odabrani zaposleni ne radi odabranog datuma.' });
 
-    const vreme_pocetka = Number(req.body.vreme_pocetka);
-    const vreme_zavrsetka = vreme_pocetka + usluga.trajanje;
     let i = 0;
     for (; i < radniDan.termini.length; i++) {
         let termin = radniDan.termini[i];
@@ -122,7 +151,21 @@ router.post('/termin/zakazi', async (req, res, next) => {
             radniDan.termini.splice(i, 1);
             radniDan.termini.sort((a, b) => { return a.vreme_pocetka - b.vreme_pocetka; });
             radniDan.save();
-            return res.json(radniDan);
+            res.json(radniDan);
+
+            if (saljiMejl) {
+                const satZavrsetka = Math.floor(vreme_zavrsetka / 60);
+                const minutZavrsetka = vreme_zavrsetka % 60;
+                slanjeMaila.saljiMail('Klijent je upravo zakazao termin kod Vas za danas',
+                    `Poštovani, \n\n` +
+                    `Vaš klijent ${klijent.ime} ${klijent.prezime} je zakazao današnji termin kod Vas ` +
+                    `od ${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)} do ${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)} ` +
+                    `za uslugu ${usluga.naziv}.\n\n` +
+                    `Pozdrav,\n` +
+                    `Vaš Zakazi.rs`,
+                    zaposleni.email);
+            }
+            return;
         }
     }
 
@@ -138,7 +181,7 @@ router.post(`/termin/otkazi`, async (req, res, next) => {
     const zaposleni_id = req.body.zaposleni_id;
     const vreme_pocetka = Number(req.body.vreme_pocetka);
     const vreme_zavrsetka = Number(req.body.vreme_zavrsetka);
-    
+
     const satPocetka = Math.floor(vreme_pocetka / 60);
     const minutPocetka = vreme_pocetka % 60;
     datum.setHours(satPocetka, minutPocetka, 0, 0);
@@ -147,7 +190,8 @@ router.post(`/termin/otkazi`, async (req, res, next) => {
 
     let saljiMejl = false;
     datum.setHours(0, 0, 0, 0);
-    const danas = new Date().setHours(0, 0, 0, 0);
+    let danas = new Date();
+    danas.setHours(0, 0, 0, 0);
     //ako se otkazuje termin koji je danas kasnije u toku dana, treba obavestiti zaposlenog o tome
     if (datum.getTime() === danas.getTime()) saljiMejl = true;
 
@@ -202,9 +246,9 @@ router.post(`/termin/otkazi`, async (req, res, next) => {
     radniDan.termini.splice(pocetniIndeksZaBrisanje, brojTerminZaBrisanje);
 
     let noviTermin = {
-        vreme_pocetka : novoVremePocetka,
-        vreme_zavrsetka : novoVremeZavrsetka,
-        zauzeto : false
+        vreme_pocetka: novoVremePocetka,
+        vreme_zavrsetka: novoVremeZavrsetka,
+        zauzeto: false
     }
 
     radniDan.termini.push(noviTermin);
@@ -215,17 +259,17 @@ router.post(`/termin/otkazi`, async (req, res, next) => {
 
     const klijent = await KorisnikModel.findById(klijent_id).exec();
     const zaposleni = await KorisnikModel.findById(zaposleni_id).exec();
-    
+
     if (saljiMejl) {
         const satZavrsetka = Math.floor(vreme_zavrsetka / 60);
         const minutZavrsetka = vreme_zavrsetka % 60;
-        slanjeMaila.saljiMail('Klijent je otkazao današnji termin', 
-        `Poštovani, \n\n` + 
-        `Vaš klijent ${klijent.ime} ${klijent.prezime} je otkazao današnji termin koji je zakazao kod Vas ` +
-        `u terminu ${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)}-${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)}.\n\n` 
-        `Pozdrav,\n` + 
-        `Vaš Zakazi.rs`,
-        zaposleni.email);
+        slanjeMaila.saljiMail('Klijent je otkazao današnji termin',
+            `Poštovani, \n\n` +
+            `Vaš klijent ${klijent.ime} ${klijent.prezime} je otkazao današnji termin koji je prethodno zakazao kod Vas ` +
+            `od ${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)} do ${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)}.\n\n` +
+            `Pozdrav,\n` +
+            `Vaš Zakazi.rs`,
+            zaposleni.email);
     }
 });
 

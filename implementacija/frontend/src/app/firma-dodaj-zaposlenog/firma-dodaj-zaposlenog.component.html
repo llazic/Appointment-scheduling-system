@@ -27,7 +27,7 @@
                             <input type="email" class="form-control" id="email" placeholder="Email adresa"
                                 [(ngModel)]="email" name="email">
                         </div>
-                        <div class="form-group">
+                        <div *ngIf="sveUsluge.length !== 0" class="form-group">
                             <label for="usluge">Usluge koje obavlja zaposleni</label>
                             <div class="form-check" *ngFor="let u of sveUsluge; let i = index">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

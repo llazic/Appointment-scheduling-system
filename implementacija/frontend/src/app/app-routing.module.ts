@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PrijavaComponent } from './prijava/prijava.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { RegistracijaFirmeComponent } from './registracija-firme/registracija-firme.component';
-import { ZaposleniPocetnaComponent } from './zaposleni-pocetna/zaposleni-pocetna.component';
 import { FirmaDodajZaposlenogComponent } from './firma-dodaj-zaposlenog/firma-dodaj-zaposlenog.component';
 import { FirmaPregledZaposlenihComponent } from './firma-pregled-zaposlenih/firma-pregled-zaposlenih.component';
 import { FirmaDodajUsluguComponent } from './firma-dodaj-uslugu/firma-dodaj-uslugu.component';
@@ -16,6 +15,8 @@ import { KlijentZakazivanjeComponent } from './klijent-zakazivanje/klijent-zakaz
 import { KlijentPregledSvojihTerminaComponent } from './klijent-pregled-svojih-termina/klijent-pregled-svojih-termina.component';
 import { KlijentPregledJednogTerminaComponent } from './klijent-pregled-jednog-termina/klijent-pregled-jednog-termina.component';
 import { FirmaPregledRadnogVremenaComponent } from './firma-pregled-radnog-vremena/firma-pregled-radnog-vremena.component';
+import { ZaposleniPregledTerminaComponent } from './zaposleni-pregled-termina/zaposleni-pregled-termina.component';
+import { ZaposleniPromeniLozinkuComponent } from './zaposleni-promeni-lozinku/zaposleni-promeni-lozinku.component';
 
 
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'klijent/termini', component: KlijentPregledSvojihTerminaComponent },
   { path: 'registracija/klijent', component: RegistracijaComponent },
   { path: 'registracija/firma', component: RegistracijaFirmeComponent },
-  { path: 'zaposleni/pocetna', component: ZaposleniPocetnaComponent }
+  { path: 'zaposleni/pocetna', component: ZaposleniPregledTerminaComponent },
+  { path: 'zaposleni/promeni_lozinku', component: ZaposleniPromeniLozinkuComponent },
 ];
 
 @NgModule({

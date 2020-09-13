@@ -6,15 +6,16 @@
             <h1>Zakazivanje termina</h1>
             <br>
         </div>
-        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+        <div *ngIf="sviZaposleni.length === 0" class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <h5>Trenutno niko od zaposlenih ne pruža tu uslugu. Možete pokušati kasnije.</h5>
+        </div>
+        <div *ngIf="sviZaposleni.length !== 0" class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
                     aria-valuemax="100" id="napredak">
                 </div>
             </div>
-        </div>
-        <br>
-        <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <br>
             <div class="poruka">{{poruka}}</div>
             <br>
             <div class="card bg-light">
@@ -43,7 +44,7 @@
                                     </option>
                                 </select>
                             </div>
-                            <div *ngIf="radniDani.length !== 0" class="form-group">
+                            <div *ngIf="odabranZaposleni === 'Odaberite' || (radniDani.length !== 0 && slobodniTerminiOdabranogZaposlenog().length !== 0)" class="form-group">
                                 <label for="odabranoVreme">Odaberite vreme</label>
                                 <select class="form-control" name="odabranoVreme" id="odabranoVreme"
                                     [(ngModel)]="odabranoVreme">
@@ -52,6 +53,10 @@
                                         {{ispisTermina(t)}}
                                     </option>
                                 </select>
+                            </div>
+                            <div *ngIf="odabranZaposleni !== 'Odaberite' && radniDani.length !== 0 && slobodniTerminiOdabranogZaposlenog().length === 0">
+                                Nažalost odabrani zaposleni nema slobodnih termina odabranog datuma.<br>
+                                Možete odabrati drugog zaposlenog ili drugi datum.
                             </div>
                         </span>
                         <span *ngIf="korak === 3">

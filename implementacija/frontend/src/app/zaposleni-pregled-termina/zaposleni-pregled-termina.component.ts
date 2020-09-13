@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { ZaposleniService } from '../zaposleni.service';
 import { Router } from '@angular/router';
-import { FirmaService } from '../firma.service';
 import { ispisNaDveCifre } from '../zajednicke-funkcionalnosti';
 
 @Component({
-  selector: 'app-firma-pregled-radnog-vremena',
-  templateUrl: './firma-pregled-radnog-vremena.component.html',
-  styleUrls: ['./firma-pregled-radnog-vremena.component.css']
+  selector: 'app-zaposleni-pregled-termina',
+  templateUrl: './zaposleni-pregled-termina.component.html',
+  styleUrls: ['./zaposleni-pregled-termina.component.css']
 })
-export class FirmaPregledRadnogVremenaComponent implements OnInit {
+export class ZaposleniPregledTerminaComponent implements OnInit {
 
-  constructor(private router: Router, private firmaService: FirmaService) { }
+  constructor(private zaposleniService: ZaposleniService, private router: Router) { }
 
   ngOnInit(): void {
-    this.zaposleni = JSON.parse(localStorage.getItem('zaposleni'));
+    this.zaposleni = JSON.parse(localStorage.getItem('korisnik'));
     this.datum = new Date();
-    this.firmaService.dohvatiRadnoVreme(this.zaposleni._id, this.datum).subscribe((odgovor: any) => {
+    this.zaposleniService.dohvatiRadnoVreme(this.zaposleni._id, this.datum).subscribe((odgovor: any) => {
       this.termini = odgovor;
     });
   }
@@ -23,13 +23,9 @@ export class FirmaPregledRadnogVremenaComponent implements OnInit {
   poruka : string = '';
 
   zaposleni;
-  termini = [];
-
   datum;
 
-  dodeliRadnoVreme() {
-    this.router.navigate(['/firma/zaposleni/dodeli_radno_vreme']);
-  }
+  termini = [];
 
   ispisiVreme(termin) {
     const pocetak = Number(termin.vreme_pocetka);
@@ -48,10 +44,11 @@ export class FirmaPregledRadnogVremenaComponent implements OnInit {
     console.log('pozvan datumPromenjen()');
     if (this.datum == 'Invalid Date') return this.poruka = 'Unesite ispravan datum u formatu Mesec/Dan/Godina.';
 
-    this.firmaService.dohvatiRadnoVreme(this.zaposleni._id, this.datum).subscribe((odgovor: any) => {
+    this.zaposleniService.dohvatiRadnoVreme(this.zaposleni._id, this.datum).subscribe((odgovor: any) => {
       this.termini = odgovor;
       console.log(odgovor);
     });
     return '';
   }
+
 }

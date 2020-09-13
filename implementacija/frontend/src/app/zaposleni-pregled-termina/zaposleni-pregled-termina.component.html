@@ -1,33 +1,19 @@
-<app-firma-nav></app-firma-nav>
+<app-zaposleni-nav></app-zaposleni-nav>
 <br><br>
 <div class="container">
     <div class="row">
         <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
-            <h1>{{zaposleni.ime}} {{zaposleni.prezime}} raspored</h1>
+            <h1>Raspored zakazanih termina</h1>
             <br>
         </div>
         <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
             <div class="poruka">{{poruka}}</div>
             <br>
-            <form>
-                <table width="100%">
-                    <tr>
-                        <td align="left">
-                            <input type="text" placeholder="Mesec/Dan/Godina" class="form-control" bsDatepicker
-                                [(ngModel)]="datum" name="datum" autocomplete="off" id="datum" (ngModelChange)="datumPromenjen()">
-                        </td>
-                        <td align="right">
-                            <button class="btn btn-success" (click)="dodeliRadnoVreme()">Dodeli radno vreme</button>
-                        </td>
-                    </tr>
-                </table>
-            </form>
+            <input type="text" placeholder="Mesec/Dan/Godina" class="form-control" bsDatepicker [(ngModel)]="datum"
+                name="datum" autocomplete="off" id="datum" (ngModelChange)="datumPromenjen()">
             <br>
-            <div *ngIf="termini.length === 0">
-                <h5>
-                    {{zaposleni.ime}} {{zaposleni.prezime}} ne radi odabranog datuma. <br>
-                    Možete dodeliti radno vreme klikom na dugme "Dodeli radno vreme".
-                </h5>
+            <div *ngIf="termini.length === 0" class="center">
+                <h5>Ne radite odabranog datuma.</h5>
             </div>
             <table *ngIf="termini.length !== 0" class="table">
                 <tr>

@@ -13,6 +13,7 @@ export class ZaposleniNavComponent implements OnInit {
 
   ngOnInit() {
     let korisnik = JSON.parse(localStorage.getItem('korisnik'));
+    this.zaposleni = korisnik;
     switch (zajednickeFunkcionalnosti.tipKorisnika(korisnik)) {
       case 'klijent':
         this.router.navigate(['/klijent/pocetna']);
@@ -28,4 +29,9 @@ export class ZaposleniNavComponent implements OnInit {
     }
   }
 
+  zaposleni;
+
+  odjava() {
+    zajednickeFunkcionalnosti.odjava(this.router);
+  }
 }

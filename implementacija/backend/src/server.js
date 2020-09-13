@@ -64,7 +64,7 @@ app.get('/pretraga/:pojam', async (req, res, next) => {
     let usluge = await UslugaModel.find({ naziv: { $in: nizPojmova } }).select('naziv firma_id').exec();
 
     for (let u of usluge) {
-        if (!firme.find(f => f._id.equals(u.firma_id))) {
+        if (!(firme.find(f => f._id.equals(u.firma_id)))) {
             let novaFirma = await FirmaModel.findOne({ _id: u.firma_id }).select('naziv opis adresa').exec();
             firme.push(novaFirma);
         }

@@ -23,8 +23,8 @@ router.get('/termini/zaposleni/:zaposleni_id/:datum', async (req, res, next) => 
     let datum = new Date(req.params.datum);
     datum.setHours(0, 0, 0, 0);
     let radniDan = await RadniDaniModel.findOne({ zaposleni_id : req.params.zaposleni_id, datum : datum}).exec();
-    radniDan = radniDan.toObject();
     if (!radniDan) return res.json([]);
+    radniDan = radniDan.toObject();
 
     for (let i = 0; i < radniDan.termini.length; i++){
         let termin = radniDan.termini[i];

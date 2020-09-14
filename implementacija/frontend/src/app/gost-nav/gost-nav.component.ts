@@ -13,19 +13,19 @@ export class GostNavComponent implements OnInit {
 
   ngOnInit() {
     let korisnik = JSON.parse(localStorage.getItem('korisnik'));
-    // switch (zajednickeFunkcionalnosti.tipKorisnika(korisnik)) {
-    //   case 'klijent':
-    //     this.router.navigate(['/klijent/pocetna']);
-    //     return;
-    //   case 'zaposleni':
-    //     this.router.navigate(['/zaposleni/pocetna']);
-    //     return;
-    //   case 'firma':
-    //     this.router.navigate(['/firma/pocetna']);
-    //     return;
-    //   default:
-    //     return;
-    // }
+    switch (zajednickeFunkcionalnosti.tipKorisnika(korisnik)) {
+      case 'klijent':
+        this.router.navigate(['/klijent/pocetna']);
+        return;
+      case 'zaposleni':
+        this.router.navigate(['/zaposleni/pocetna']);
+        return;
+      case 'firma':
+        this.router.navigate(['/firma/pocetna']);
+        return;
+      default:
+        return;
+    }
   }
 
 }

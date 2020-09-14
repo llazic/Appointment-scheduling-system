@@ -1,1 +1,31 @@
-<p>zaposleni-promeni-lozinku works!</p>
+<app-zaposleni-nav></app-zaposleni-nav>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
+            <h1>Promeni lozinku</h1>
+            <br>
+        </div>
+        <div class="col col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <div class="poruka">{{poruka}}</div>
+            <br>
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="stara_lozinka">Stara lozinka</label>
+                            <input type="password" class="form-control" id="stara_lozinka" name="stara_lozinka"
+                                [(ngModel)]="stara_lozinka" placeholder="Stara lozinka">
+                        </div>
+                        <div class="form-group">
+                            <label for="nova_lozinka">Nova lozinka</label>
+                            <input type="password" class="form-control" id="nova_lozinka" name="nova_lozinka"
+                                [(ngModel)]="nova_lozinka" placeholder="Nova lozinka">
+                        </div>
+                        <button type="submit" class="btn btn-success max_sirina" (click)='promeniLozinku()'>Promeni lozinku</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

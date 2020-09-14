@@ -8,7 +8,6 @@ import { PrijavaComponent } from './prijava/prijava.component';
 import { GostNavComponent } from './gost-nav/gost-nav.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { RegistracijaFirmeComponent } from './registracija-firme/registracija-firme.component';
-import { ZaposleniPocetnaComponent } from './zaposleni-pocetna/zaposleni-pocetna.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FirmaNavComponent } from './firma-nav/firma-nav.component';
 import { KlijentNavComponent } from './klijent-nav/klijent-nav.component';
@@ -28,6 +27,7 @@ import { KlijentZakazivanjeComponent } from './klijent-zakazivanje/klijent-zakaz
 import { KlijentPregledSvojihTerminaComponent } from './klijent-pregled-svojih-termina/klijent-pregled-svojih-termina.component';
 import { KlijentPregledJednogTerminaComponent } from './klijent-pregled-jednog-termina/klijent-pregled-jednog-termina.component';
 import { FirmaPregledRadnogVremenaComponent } from './firma-pregled-radnog-vremena/firma-pregled-radnog-vremena.component';
+import { ZaposleniPregledTerminaComponent } from './zaposleni-pregled-termina/zaposleni-pregled-termina.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,6 @@ import { FirmaPregledRadnogVremenaComponent } from './firma-pregled-radnog-vreme
     GostNavComponent,
     RegistracijaComponent,
     RegistracijaFirmeComponent,
-    ZaposleniPocetnaComponent,
     FirmaNavComponent,
     KlijentNavComponent,
     ZaposleniNavComponent,
@@ -53,6 +52,7 @@ import { FirmaPregledRadnogVremenaComponent } from './firma-pregled-radnog-vreme
     KlijentPregledSvojihTerminaComponent,
     KlijentPregledJednogTerminaComponent,
     FirmaPregledRadnogVremenaComponent,
+    ZaposleniPregledTerminaComponent,
   ],
   imports: [
     BrowserModule,

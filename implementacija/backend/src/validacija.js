@@ -173,3 +173,13 @@ exports.validirajZahtevZaOtkazivanjeTermina = function (termin) {
 
     return schema.validate(termin);
 }
+
+exports.validirajZahtevZaPromenuLozinke = function (zahtev) {
+    const schema = Joi.object({
+        zaposleni_id : Joi.objectId().required(),
+        stara_lozinka : Joi.string().required(),
+        nova_lozinka : Joi.string().min(8).required(),
+    });
+
+    return schema.validate(zahtev);
+}

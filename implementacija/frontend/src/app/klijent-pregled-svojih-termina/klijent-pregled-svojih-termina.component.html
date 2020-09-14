@@ -7,7 +7,10 @@
             <br>
         </div>
         <div class="col col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3 center">
-            <table class="table">
+            <div *ngIf="termini.length === 0">
+                <h5>Nemate zakazane termine.</h5>
+            </div>
+            <table *ngIf="termini.length !== 0" class="table">
                 <tr>
                     <th>Datum</th>
                     <th>Vreme</th>

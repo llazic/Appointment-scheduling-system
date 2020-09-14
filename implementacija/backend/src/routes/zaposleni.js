@@ -3,6 +3,8 @@ const { KorisnikModel } = require('../modeli/korisnik-model');
 const { RadniDaniModel } = require('../modeli/radni-dan-model');
 const router = express.Router();
 const slanjeMaila = require('../slanje-maila');
+const validacija = require('../validacija');
+const sha256 = require('js-sha256');
 
 
 router.get('/zaposleni/:zaposleni_id', async (req, res, next) => {
@@ -40,6 +42,27 @@ router.delete('/zaposleni/:zaposleni_id', async (req, res, next) => {
         `Vaš Zakaži.rs`, zaposleni.email);
     res.json(zaposleni);
 })
+
+//mora da stoji iznad router.put('/zaposleni/:zaposleni_id', ...) da bi se lepo uparila putanja
+router.put('/zaposleni/promeni_lozinku', async (req, res, next) => {
+    const result = validacija.validirajZahtevZaPromenuLozinke(req.body);
+    if (result.error) console.log(result.error);
+    if (result.error) return res.status(400).json({ poruka: 'Neispravan zahtev.' });
+
+    let zaposleni = await KorisnikModel.findOne({ _id: req.body.zaposleni_id, tip: 'zaposleni' }).exec();
+    if (!zaposleni) return res.json({ poruka: 'Ne postoji korisnik sa datim id-jem.' });
+
+    const hash_stare_lozinke = sha256(req.body.stara_lozinka);
+
+    if (zaposleni.hash_lozinke !== hash_stare_lozinke) return res.json({ poruka : 'Stara lozinka nije odgovarajuća.' });
+
+    const hash_nove_lozinke = sha256(req.body.nova_lozinka);
+    zaposleni.hash_lozinke = hash_nove_lozinke;
+    zaposleni.save();
+
+    res.json(zaposleni);
+});
+
 
 router.put('/zaposleni/:zaposleni_id', async (req, res, next) => {
     let zaposleni = await KorisnikModel.updateOne({ _id: req.params.zaposleni_id }, { $set: { usluge: req.body.usluge } }).exec();

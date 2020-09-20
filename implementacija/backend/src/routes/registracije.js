@@ -89,6 +89,9 @@ router.route('/firma').post(async (req, res, next) => {
     const f = await FirmaModel.find({ email: req.body.email }).exec();
     if (f.length !== 0) return res.json({ poruka: 'Već postoji korisnik sa tom email adresom.' });
 
+    const fi = await FirmaModel.find({ naziv : req.body.naziv }).exec();
+    if (fi.length !== 0) return res.json({ poruka: 'Već postoji firma sa tim nazivom.' });
+
     const hash_lozinke = sha256(req.body.lozinka);
 
     let firma = new FirmaModel({

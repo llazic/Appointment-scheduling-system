@@ -1,8 +1,8 @@
 {
-    "GUID": "83604910-ec6c-11ea-b282-0bbd9c9c9ee3",
+    "GUID": "9ce94c30-f926-11ea-a3a2-ed2fcc14660f",
     "modelName": "New Model",
     "code": "",
-    "lastModifTS": "2020-09-07T11:41:04.930Z",
+    "lastModifTS": "2020-09-17T22:11:07.557Z",
     "persistenceSchemaVersion": "4",
     "description": "",
     "comments": "",
@@ -777,19 +777,15 @@
                                     "hackoladeMeta": {}
                                 },
                                 {
-                                    "type": "string",
-                                    "minLength": "",
-                                    "maxLength": "",
-                                    "pattern": "",
-                                    "format": "",
-                                    "default": "",
+                                    "type": "timestamp",
                                     "primaryKey": false,
                                     "relationshipType": "",
                                     "parentRelationship": "",
                                     "childRelationships": [],
                                     "foreignCollection": "",
                                     "foreignField": [],
-                                    "enum": [],
+                                    "default": "",
+                                    "format": "",
                                     "sample": "",
                                     "GUID": "95172e90-ec98-11ea-9701-716e1c2c71ab",
                                     "name": "vreme_zavrsetka",
@@ -799,10 +795,7 @@
                                     "dependencies": [],
                                     "required": false,
                                     "id": "",
-                                    "hackoladeMeta": {},
-                                    "error": {
-                                        "name": false
-                                    }
+                                    "hackoladeMeta": {}
                                 },
                                 {
                                     "type": "objectId",
@@ -839,14 +832,17 @@
                                     "foreignField": [],
                                     "sample": "",
                                     "GUID": "b7a6fda0-ec98-11ea-9701-716e1c2c71ab",
-                                    "name": "zauzet",
+                                    "name": "zauzeto",
                                     "code": "",
                                     "description": "",
                                     "comments": "",
                                     "dependencies": [],
                                     "required": false,
                                     "id": "",
-                                    "hackoladeMeta": {}
+                                    "hackoladeMeta": {},
+                                    "error": {
+                                        "name": false
+                                    }
                                 }
                             ],
                             "minProperties": "",
@@ -1149,7 +1145,7 @@
         "95172e90-ec98-11ea-9701-716e1c2c71ab": "vreme_zavrsetka",
         "9ae4ee20-ec98-11ea-9701-716e1c2c71ab": "usluga_id",
         "b03922a0-ec98-11ea-9701-716e1c2c71ab": "za",
-        "b7a6fda0-ec98-11ea-9701-716e1c2c71ab": "zauzet",
+        "b7a6fda0-ec98-11ea-9701-716e1c2c71ab": "zauzeto",
         "f41cbe50-ec98-11ea-9701-716e1c2c71ab": "trajanje",
         "2aa9bd60-ec99-11ea-9701-716e1c2c71ab": "datum",
         "84d626c0-ec99-11ea-9701-716e1c2c71ab": "usluge",

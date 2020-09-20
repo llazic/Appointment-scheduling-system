@@ -25,10 +25,11 @@ router.get('/zaposleni/:firma_id/:usluga_id', async (req, res, next) => {
 
 router.delete('/zaposleni/:zaposleni_id', async (req, res, next) => {
     const zaposleni_id = req.params.zaposleni_id;
-    let radniDaniUBuducnosti = await RadniDaniModel.find({ zaposleni_id: zaposleni_id }).exec();
+    const sada = new Date();
+    let radniDaniUBuducnosti = await RadniDaniModel.find({ zaposleni_id: zaposleni_id, datum : { $gt : sada } }).exec();
     for (let radniDan of radniDaniUBuducnosti) {
         for (let termin of radniDan.termini) {
-            if (termin.zauzet === true) return res.json({ poruka: 'Zaposleni ima zakazane termine u budućnosti. Možete ga otpustiti nakon toga.' });
+            if (termin.zauzeto === true) return res.json({ poruka: 'Zaposleni ima zakazane termine u budućnosti. Možete ga otpustiti nakon toga.' });
         }
     }
 

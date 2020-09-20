@@ -37,6 +37,10 @@ export class KlijentZakazivanjeComponent implements OnInit {
   odabranZaposleni = 'Odaberite';
   odabranoVreme = 'Odaberite';
 
+  resetujVreme() {
+    this.odabranoVreme = 'Odaberite';
+  }
+
   slobodniTerminiOdabranogZaposlenog() {
     if (this.odabranZaposleni === 'Odaberite') return [];
     let terminiOdabranogZaposlenog = this.radniDani.find(r => r.zaposleni_id === this.odabranZaposleni).termini;
@@ -86,6 +90,7 @@ export class KlijentZakazivanjeComponent implements OnInit {
         if (validacija.popunjenoSve([this.odabraniDatum, this.odabranZaposleni]) === false) return this.poruka = 'Unesite sva polja.';
         if (this.datumOk() !== true) return;
         this.klijentService.dohvatiTermine(this.usluga.firma_id, this.odabraniDatum).subscribe((odgovor: any) => {
+          console.log(odgovor);
           this.radniDani = odgovor;
           this.podesiKorak2();
           this.korak++;

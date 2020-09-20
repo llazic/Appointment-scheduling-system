@@ -1,5 +1,3 @@
-/**** Obrisati komentare ****/
-
 Slučajevi upotrebe:
 
 Gost:
@@ -9,17 +7,22 @@ Klijent:
 	1. Pretraga firmi
 		- po imenu
 		- po usluzi
-	2. Pregled firmi
+	2. Pregled firme
 	3. Zakazivanje termina
 	4. Pregled zakazanih termina
-	5. Otkazivanje termina (uz uslovno slanje mejla zaposlenom)
+	5. Pregled zakazanog termina
+	6. Otkazivanje termina (uz uslovno slanje mejla zaposlenom)
 Firma:
-	1. Kreiranje zaposlenog
-	2. Uklanjanje zaposlenog
-	3. Upravljanje zaduženjima zaposlenog
-	4. Upravljanje uslugama
+	1. Kreiranje usluge
+	2. Pregled usluga
+	3. Kreiranje zaposlenog(uz slanje mejla zaposlenom)
+	4. Pregled svojih zaposlenih
+	5. Uklanjanje zaposlenog
+	6. Pregled radnog vremena zaposlenog
+	7. Dodeljivanje radnog vremena zaposlenom
+	8. Dodeljivanje usluga zaposlenom
 Zaposleni:
-	1. Pregled zakazanih termina
+	1. Pregled termina
 	3. Promena lozinke
 	
 + Logout za sve ulogovane

@@ -37,14 +37,14 @@
                             <div *ngIf="radniDani.length !== 0" class="form-group">
                                 <label for="odabranZaposleni">Odaberite zaposlenog</label>
                                 <select class="form-control" name="odabranZaposleni" id="odabranZaposleni"
-                                    [(ngModel)]="odabranZaposleni">
+                                    [(ngModel)]="odabranZaposleni" (change)='resetujVreme()'>
                                     <option>Odaberite</option>
                                     <option *ngFor="let r of radniDani" value="{{r.zaposleni_id}}">{{r.ime}}
                                         {{r.prezime}}
                                     </option>
                                 </select>
                             </div>
-                            <div *ngIf="odabranZaposleni === 'Odaberite' || (radniDani.length !== 0 && slobodniTerminiOdabranogZaposlenog().length !== 0)" class="form-group">
+                            <div *ngIf="radniDani.length !== 0 && slobodniTerminiOdabranogZaposlenog().length !== 0" class="form-group">
                                 <label for="odabranoVreme">Odaberite vreme</label>
                                 <select class="form-control" name="odabranoVreme" id="odabranoVreme"
                                     [(ngModel)]="odabranoVreme">
@@ -62,6 +62,7 @@
                         <span *ngIf="korak === 3">
                             <h5>Pregled</h5>
                             &nbsp;&nbsp;&nbsp;{{firma.naziv}}<br>
+                            &nbsp;&nbsp;&nbsp;Usluga: {{usluga.naziv}}<br>
                             &nbsp;&nbsp;&nbsp;Adresa: {{firma.adresa}}<br>
                             &nbsp;&nbsp;&nbsp;Datum: {{ispisiDatum(odabraniDatum)}}<br>
                             &nbsp;&nbsp;&nbsp;Vreme: {{ispisTermina(odabranoVreme)}}<br>

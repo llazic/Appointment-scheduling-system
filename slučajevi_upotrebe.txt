@@ -26,5 +26,3 @@ Zaposleni:
 	3. Promena lozinke
 	
 + Logout za sve ulogovane
-
-///

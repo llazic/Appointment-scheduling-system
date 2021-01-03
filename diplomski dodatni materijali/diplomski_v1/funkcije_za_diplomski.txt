@@ -1,0 +1,67 @@
+Gost:
+	1. Registracija (korisnik + firma) (registracija pomocu fejsbuka?)
+	2. Logovanje
+Korisnik:
+	1. Pretraga firmi (+ preporucene?)
+		- po imenu
+		- po usluzi
+	2. Zakazivanje termina
+	3. Pregled zakazanih termina
+	4. Otkazivanje termina (uz slanje mejla zaposlenom?)
+Firma:
+	1. Kreiranje zaposlenog
+	2. Izmena zaposlenog(?)
+	3. Uklanjanje zaposlenog
+	4. Dodavanje usluga(?)
+	5. Pregled termina svojih zaposlenih
+Zaposleni:
+	1. Kreiranje svojih termina (da li moze biti vise osoba u jednom terminu?)
+	2. Izmena postojecih termina
+	3. Pregled zakazanih termina (ili pregled termina po danu)
+	4. Otkazivanje termina korisnicima (uz slanje mejla korisniku/korisnicima?)
+	5. Promena lozinke(?) (npr. kad firma kreira zaposlenog, da moze da promeni svoju sifru)
+Administrator(?):
+	1. Odobravanje novih registracija (najbitnije za firme)
+	2. Uklanjanje profila
+	
++ Logout za sve ulogovane
+
+-Sadrzaj profila:
+	-Korisnik:
+		-Ime
+		-Prezime
+		-Email
+		-Lozinka (hash lozinke u bazi)
+	-Firma:
+		-Naziv
+		-Opis (cime se bavi, istorija i sl)
+		-Email
+		-Lozinka
+		-Lokacija(lokacije?)
+	-Zaposleni:
+		-Ime
+		-Prezime
+		-Email
+		-Lozinka
+		-Lokacija objekta u kom radi (?)
+		
+Detaljniji opis pravljenja termina:
+	1. Odabir usluge koja se pruza
+	2. Odabir broja osoba po terminu
+	3. Odabir trajanja termina
+	4. Odabir raspona vremena u kom se zakazuje
+
+Detaljniji opis zakazivanja termina:
+	1. Odabir firme
+	2. Odabir lokacije objekta (?) (ukoliko firma ima vise objekata ili praviti za svaku lokaciju odvojeno?)
+	3. Odabir usluge koja se zakazuje
+	4. Simultani odabir zaposlenog i termina (cemu dati prednost?) (moze da se uradi kao filtriranje)
+	5. Potvrda zakazivanja
+	
+	
+	
+	
+	
+	
+	
+	

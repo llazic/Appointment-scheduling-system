@@ -8,6 +8,9 @@ import * as validacija from '../validacija';
   templateUrl: './registracija-firme.component.html',
   styleUrls: ['./registracija-firme.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za registraciju firme
+ */
 export class RegistracijaFirmeComponent implements OnInit {
 
   constructor(private gostService: GostService, private router: Router) { }
@@ -22,6 +25,9 @@ export class RegistracijaFirmeComponent implements OnInit {
   lozinka: string = '';
   adresa: string = '';
 
+  /**
+   * Registracija firme
+   */
   registrujFirmu() {
     if (validacija.popunjenoSve([this.naziv, this.opis, this.email, this.lozinka, this.adresa]) == false) {
       this.poruka = 'Unesite sva polja.';

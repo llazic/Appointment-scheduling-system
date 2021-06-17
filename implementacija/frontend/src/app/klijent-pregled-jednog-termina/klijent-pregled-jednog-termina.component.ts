@@ -8,6 +8,9 @@ import { ispisDatuma, ispisNaDveCifre } from '../zajednicke-funkcionalnosti';
   templateUrl: './klijent-pregled-jednog-termina.component.html',
   styleUrls: ['./klijent-pregled-jednog-termina.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za pregled pojedinacnog termina od strane klijenta
+ */
 export class KlijentPregledJednogTerminaComponent implements OnInit {
 
   constructor(private klijentService: KlijentService, private router: Router) { }
@@ -30,6 +33,9 @@ export class KlijentPregledJednogTerminaComponent implements OnInit {
   firma;
   zaposleni;
 
+  /**
+   * Provera da li je datum termina u buducnosti
+   */
   datumUBuducnosti(): boolean {
     let datum = new Date(this.termin.datum);
     const sat = Math.floor(Number(this.termin.vreme_pocetka) / 60);
@@ -40,10 +46,16 @@ export class KlijentPregledJednogTerminaComponent implements OnInit {
     else return false;
   }
 
+  /**
+   * Ispis datuma
+   */
   ispisiDatum(datum) {
     return ispisDatuma(datum);
   }
 
+  /**
+   * Ispis vremena termina
+   */
   ispisTermina(vreme_pocetka) {
     const pocetak = Number(vreme_pocetka);
     const kraj = Number(pocetak + this.termin.usluga.trajanje);
@@ -57,6 +69,9 @@ export class KlijentPregledJednogTerminaComponent implements OnInit {
     return `${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)}-${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)}`;
   }
 
+  /**
+   * Otkazivanje termina
+   */
   otkaziTermin() {
     this.klijentService.otkaziTermin(this.termin.zaposleni_id, this.termin.datum, this.termin.vreme_pocetka, this.termin.vreme_zavrsetka).subscribe((odgovor : any) => {
       if (odgovor.poruka) return this.poruka = odgovor.poruka;

@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './firma-izmeni-usluge-zaposlenog.component.html',
   styleUrls: ['./firma-izmeni-usluge-zaposlenog.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za izmenu usluga zaposlenog od strane firme
+ */
 export class FirmaIzmeniUslugeZaposlenogComponent implements OnInit {
 
   constructor(private firmaService: FirmaService, private router: Router) { }
@@ -28,6 +31,9 @@ export class FirmaIzmeniUslugeZaposlenogComponent implements OnInit {
   sveUsluge : [];
   odabraneUsluge : any;
 
+  /**
+   * Azuriranje polja odabrane usluge na osnovu checkbox-a
+   */
   kliknutCheckbox(usluga_id : string, uslugaOdabrana : boolean) {
     if (uslugaOdabrana) this.odabraneUsluge.push(usluga_id);
     else {
@@ -36,10 +42,16 @@ export class FirmaIzmeniUslugeZaposlenogComponent implements OnInit {
     }
   }
 
+  /**
+   * Provera da li je usluga odabrana
+   */
   uslugaOdabrana(usluga_id) : boolean {
     return this.odabraneUsluge !== null && this.odabraneUsluge.includes(usluga_id);
   }
 
+  /**
+   * Azuriranje zaposlenog
+   */
   sacuvaj(){
     this.firmaService.azurirajZaposlenog(this.zaposleni._id, this.odabraneUsluge).subscribe((odgovor : any) => {
       if (odgovor.poruka) return this.poruka = odgovor.poruka;

@@ -8,6 +8,9 @@ import * as validacija from '../validacija';
   templateUrl: './registracija.component.html',
   styleUrls: ['./registracija.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za registraciju
+ */
 export class RegistracijaComponent implements OnInit {
 
   constructor(private gostService: GostService, private router: Router) { }
@@ -21,6 +24,9 @@ export class RegistracijaComponent implements OnInit {
   email: string = '';
   lozinka: string = '';
 
+  /**
+   * Registracija
+   */
   registrujSe() {
     if (validacija.popunjenoSve([this.ime, this.prezime, this.email, this.lozinka]) == false) {
       this.poruka = 'Unesite sva polja.';

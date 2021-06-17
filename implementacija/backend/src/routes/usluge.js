@@ -4,11 +4,17 @@ const validacija = require('../validacija');
 const { FirmaModel } = require('../modeli/firma-model');
 const { UslugaModel } = require('../modeli/usluga-model');
 
+/**
+ * Dohvatanje usluga po firmi
+ */
 router.get('/usluge/:firma_id', async function(req, res, next) {
     let usluge = await UslugaModel.find({ firma_id : req.params.firma_id }).exec();
     res.json(usluge);
 });
 
+/**
+ * Kreiranje usluge
+ */
 router.post('/usluga', async function(req, res, next) {
     const result = validacija.validirajUslugu(req.body);
     if (result.error) console.log(result.error);

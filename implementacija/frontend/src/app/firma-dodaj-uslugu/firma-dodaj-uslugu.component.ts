@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './firma-dodaj-uslugu.component.html',
   styleUrls: ['./firma-dodaj-uslugu.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za dodavanje usluge od strane firme
+ */
 export class FirmaDodajUsluguComponent implements OnInit {
 
   constructor(private firmaService: FirmaService, private router: Router) { }
@@ -22,6 +25,9 @@ export class FirmaDodajUsluguComponent implements OnInit {
   trajanje: number;
   cena: number;
 
+  /**
+   * Dodavanje usluge i skok na pregled usluga firme
+   */
   dodajUslugu() {
     if (validacija.popunjenoSve([this.naziv, this.trajanje, this.cena]) == false) {
       this.poruka = 'Unesite sva polja.';

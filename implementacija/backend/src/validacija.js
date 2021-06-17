@@ -1,6 +1,9 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
+/**
+ * Validacija objekta klijenta
+ */
 exports.validirajKlijenta = function (klijent) {
     const schema = Joi.object({
         ime: Joi.string()
@@ -25,6 +28,9 @@ exports.validirajKlijenta = function (klijent) {
     return schema.validate(klijent);
 }
 
+/**
+ * Validacija objekta zaposlenog
+ */
 exports.validirajZaposlenog = function (zaposleni) {
     const schema = Joi.object({
         _id: Joi.objectId(),
@@ -56,6 +62,9 @@ exports.validirajZaposlenog = function (zaposleni) {
     return schema.validate(zaposleni);
 }
 
+/**
+ * Validacija objekta firme
+ */
 exports.validirajFirmu = function (firma) {
     const schema = Joi.object({
         naziv: Joi.string()
@@ -81,6 +90,9 @@ exports.validirajFirmu = function (firma) {
     return schema.validate(firma);
 }
 
+/**
+ * Validacija objekta usluge
+ */
 exports.validirajUslugu = function (usluga) {
     const schema = Joi.object({
         naziv: Joi.string()
@@ -104,6 +116,9 @@ exports.validirajUslugu = function (usluga) {
     return schema.validate(usluga);
 }
 
+/**
+ * Validacija objekta radnog vremena
+ */
 exports.validirajRadnoVreme = function (radnoVreme) {
     const schema = Joi.object({
         zaposleni_id: Joi.objectId()
@@ -131,6 +146,9 @@ exports.validirajRadnoVreme = function (radnoVreme) {
     return schema.validate(radnoVreme);
 }
 
+/**
+ * Validacija objekta termina
+ */
 exports.validirajTermin = function (termin) {
     const schema = Joi.object({
         zaposleni_id: Joi.objectId()
@@ -155,6 +173,9 @@ exports.validirajTermin = function (termin) {
     return schema.validate(termin);
 }
 
+/**
+ * Validacija zahteva za otkazivanje termina
+ */
 exports.validirajZahtevZaOtkazivanjeTermina = function (termin) {
     const schema = Joi.object({
         zaposleni_id: Joi.objectId().required(),
@@ -174,6 +195,9 @@ exports.validirajZahtevZaOtkazivanjeTermina = function (termin) {
     return schema.validate(termin);
 }
 
+/**
+ * Validacija zahteva za promenu lozinke
+ */
 exports.validirajZahtevZaPromenuLozinke = function (zahtev) {
     const schema = Joi.object({
         zaposleni_id : Joi.objectId().required(),

@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './prijava.component.html',
   styleUrls: ['./prijava.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za prijavu na sistem
+ */
 export class PrijavaComponent implements OnInit {
 
   constructor(private gostService: GostService, private router: Router) { }
@@ -18,6 +21,9 @@ export class PrijavaComponent implements OnInit {
   email: string = '';
   lozinka: string = '';
 
+  /**
+   * Prijavljivanje na sistem
+   */
   prijaviSe() {
     if (this.email == '' || this.lozinka == '') {
       this.poruka = 'Unesite sva polja.';

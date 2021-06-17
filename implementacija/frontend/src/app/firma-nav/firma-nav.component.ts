@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './firma-nav.component.html',
   styleUrls: ['./firma-nav.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za navigaciju firme
+ */
 export class FirmaNavComponent implements OnInit {
 
   constructor(private router: Router) { }
@@ -31,6 +34,9 @@ export class FirmaNavComponent implements OnInit {
     }
   }
 
+  /**
+   * Odjavljivanje sa sistema
+   */
   odjava() {
     zajednickeFunkcionalnosti.odjava(this.router);
   }

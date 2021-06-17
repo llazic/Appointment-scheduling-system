@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './gost-nav.component.html',
   styleUrls: ['./gost-nav.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za navigaciju gosta
+ */
 export class GostNavComponent implements OnInit {
 
   constructor(private router: Router) { }

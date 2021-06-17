@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './firma-dodeli-radno-vreme.component.html',
   styleUrls: ['./firma-dodeli-radno-vreme.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za dodelu radnog vremena od strane firme
+ */
 export class FirmaDodeliRadnoVremeComponent implements OnInit {
 
   constructor(private firmaService : FirmaService, private router : Router) { }
@@ -32,12 +35,18 @@ export class FirmaDodeliRadnoVremeComponent implements OnInit {
   satOd: any = 'Sati'; minutOd: any = 'Minuta';
   satDo: any = 'Sati'; minutDo: any = 'Minuta';
 
+  /**
+   * Popunjavanje niza satima u danu
+   */
   popuniNizove() {
     for (let i = 0; i < 24; i++) this.sati.push(i < 10 ? '0' + i : '' + i);
   }
 
   korak = 1;
 
+  /**
+   * Odlazak na sledeci korak
+   */
   sledeciKorak() {
     this.poruka = '';
     let ret;
@@ -58,10 +67,16 @@ export class FirmaDodeliRadnoVremeComponent implements OnInit {
     }
   }
 
+  /**
+   * Povratak na prethodni korak
+   */
   prethodniKorak() {
     this.korak--;
   }
 
+  /**
+   * Dodavanje radnog vremena i skok na pregled zaposlenih
+   */
   potvrdi() {
     let satOd = Number(this.satOd); let minutOd = Number(this.minutOd);
     let satDo = Number(this.satDo); let minutDo = Number(this.minutDo);
@@ -77,6 +92,9 @@ export class FirmaDodeliRadnoVremeComponent implements OnInit {
     });
   }
 
+  /**
+   * Provera da li su datumi ispravno uneti
+   */
   datumiOk() {
     if (validacija.popunjenoSve([this.datumOd, this.datumDo]) == false) return this.poruka = 'Unesite sva polja.';
 
@@ -88,6 +106,9 @@ export class FirmaDodeliRadnoVremeComponent implements OnInit {
     return true;
   }
 
+  /**
+   * Provera da li je vreme ispravno uneto
+   */
   vremeOk() {
     if (this.unetoVreme([this.satOd, this.satDo, this.minutOd, this.minutDo]) == false) return this.poruka = 'Unesite sva polja.';
     let satOd = Number(this.satOd); let minutOd = Number(this.minutOd);
@@ -98,6 +119,9 @@ export class FirmaDodeliRadnoVremeComponent implements OnInit {
     return true;
   }
 
+  /**
+   * Provera da li je uneto vreme
+   */
   unetoVreme(vremena) {
     for (let v of vremena) {
       if (v == 'Sati' || v == 'Minuta') return false;

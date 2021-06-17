@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './zaposleni-nav.component.html',
   styleUrls: ['./zaposleni-nav.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za navigaciju zaposlenog
+ */
 export class ZaposleniNavComponent implements OnInit {
 
   constructor(private router: Router) { }
@@ -31,6 +34,9 @@ export class ZaposleniNavComponent implements OnInit {
 
   zaposleni;
 
+  /**
+   * Odjavljivanje sa sistema
+   */
   odjava() {
     zajednickeFunkcionalnosti.odjava(this.router);
   }

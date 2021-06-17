@@ -9,6 +9,9 @@ import * as validacija from '../validacija';
   templateUrl: './zaposleni-promeni-lozinku.component.html',
   styleUrls: ['./zaposleni-promeni-lozinku.component.css']
 })
+/** 
+ * Klasa za rad sa komponentom za promenu lozinke zaposlenog
+*/
 export class ZaposleniPromeniLozinkuComponent implements OnInit {
 
   constructor(private zaposleniService : ZaposleniService, private router : Router) { }
@@ -24,6 +27,9 @@ export class ZaposleniPromeniLozinkuComponent implements OnInit {
   stara_lozinka = '';
   nova_lozinka = '';
 
+  /**
+   * Promena lozinke
+   */
   promeniLozinku() {
     if (validacija.popunjenoSve([this.stara_lozinka, this.nova_lozinka]) === false) return this.poruka = 'Unesite sva polja.';
 

@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   templateUrl: './klijent-nav.component.html',
   styleUrls: ['./klijent-nav.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za navigaciju klijenta
+ */
 export class KlijentNavComponent implements OnInit {
 
   constructor(private router: Router) { }
@@ -31,6 +34,9 @@ export class KlijentNavComponent implements OnInit {
     }
   }
 
+  /**
+   * Odjavljivanje sa sistema
+   */
   odjava() {
     zajednickeFunkcionalnosti.odjava(this.router);
   }

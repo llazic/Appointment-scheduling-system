@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './firma-pregled-zaposlenih.component.html',
   styleUrls: ['./firma-pregled-zaposlenih.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za pregled zaposlenih od strane firme
+ */
 export class FirmaPregledZaposlenihComponent implements OnInit {
 
   constructor(private firmaService: FirmaService, private router: Router) { }
@@ -24,6 +27,9 @@ export class FirmaPregledZaposlenihComponent implements OnInit {
   firma = null;
   zaposleni: Array<Korisnik> = [];
 
+  /**
+   * Otpustanje zaposlenog
+   */
   otpusti(zaposleni) {
     this.firmaService.otpustiZaposlenog(zaposleni._id).subscribe((odgovor: any) => {
       if (odgovor.poruka) return this.poruka = odgovor.poruka;
@@ -35,11 +41,17 @@ export class FirmaPregledZaposlenihComponent implements OnInit {
     });
   }
 
+  /**
+   * Skok na izmenu usluga zaposlenog
+   */
   promeniUsluge(z) {
     localStorage.setItem('zaposleni', JSON.stringify(z));
     this.router.navigate(['/firma/zaposleni/usluge']);
   }
 
+  /**
+   * Skok na pregled radnog vremena zaposlenog
+   */
   pregledRadnogVremena(z){
     localStorage.setItem('zaposleni', JSON.stringify(z));
     this.router.navigate(['/firma/zaposleni/radno_vreme']);

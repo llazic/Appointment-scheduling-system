@@ -12,6 +12,9 @@ declare var podesiProgressBar: Function;
   templateUrl: './klijent-zakazivanje.component.html',
   styleUrls: ['./klijent-zakazivanje.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za zakazivanje termina od strane klijenta
+ */
 export class KlijentZakazivanjeComponent implements OnInit {
 
   constructor(private klijentService: KlijentService, private router: Router) { }
@@ -37,10 +40,16 @@ export class KlijentZakazivanjeComponent implements OnInit {
   odabranZaposleni = 'Odaberite';
   odabranoVreme = 'Odaberite';
 
+  /**
+   * Resetovanje vremena
+   */
   resetujVreme() {
     this.odabranoVreme = 'Odaberite';
   }
 
+  /**
+   * Dohvatanje slobodnih termina za odabranog zaposlenog
+   */
   slobodniTerminiOdabranogZaposlenog() {
     if (this.odabranZaposleni === 'Odaberite') return [];
     let terminiOdabranogZaposlenog = this.radniDani.find(r => r.zaposleni_id === this.odabranZaposleni).termini;
@@ -55,10 +64,16 @@ export class KlijentZakazivanjeComponent implements OnInit {
     return slobodniTermini;
   }
 
+  /**
+   * Ispis datuma
+   */
   ispisiDatum(datum){
     return ispisDatuma(datum);
   }
 
+  /**
+   * Ispis termina
+   */
   ispisTermina(termin) {
     const pocetak = Number(termin);
     const kraj = Number(pocetak + this.usluga.trajanje);
@@ -72,6 +87,9 @@ export class KlijentZakazivanjeComponent implements OnInit {
     return `${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)}-${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)}`;
   }
   
+  /**
+   * Ispis zaposlenog
+   */
   ispisZaposlenog(zaposleni_id){
     const zaposleni = this.sviZaposleni.find(z => z._id === zaposleni_id);
     return zaposleni.ime + ' ' + zaposleni.prezime;
@@ -82,6 +100,9 @@ export class KlijentZakazivanjeComponent implements OnInit {
   radniDani;
   termini;
 
+  /**
+   * Prelazak na sledeci korak prilikom zakazivanja termina
+   */
   sledeciKorak() {
     this.poruka = '';
     let ret;
@@ -109,11 +130,17 @@ export class KlijentZakazivanjeComponent implements OnInit {
     }
   }
 
+  /**
+   * Prelazak na prethodni korak prilikom zakazivanja termina
+   */
   prethodniKorak() {
     this.korak--;
     podesiProgressBar(this.korak - 1);
   }
 
+  /**
+   * Zakazivanje termina
+   */
   potvrdi() {
     this.klijentService.zakaziTermin(this.klijent._id, this.odabranZaposleni, this.usluga._id, this.odabraniDatum, this.odabranoVreme).subscribe((odgovor : any) => {
       if (odgovor.poruka) {
@@ -127,6 +154,9 @@ export class KlijentZakazivanjeComponent implements OnInit {
     podesiProgressBar(this.korak);
   }
 
+  /**
+   * Upisi imena zaposlenih
+   */
   podesiKorak2() {
     for (let i = 0; i < this.radniDani.length; i++) {
       let zaposleni = this.sviZaposleni.find(z => z._id === this.radniDani[i].zaposleni_id);
@@ -135,6 +165,9 @@ export class KlijentZakazivanjeComponent implements OnInit {
     }
   }
 
+  /**
+   * Validacija datuma
+   */
   datumOk() {
     if (this.odabraniDatum == 'Invalid Date') return this.poruka = 'Unesite ispravan datum u formatu Mesec/Dan/Godina.';
     let sada = new Date();

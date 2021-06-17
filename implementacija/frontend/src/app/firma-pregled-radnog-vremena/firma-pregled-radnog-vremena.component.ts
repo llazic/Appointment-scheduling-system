@@ -8,6 +8,9 @@ import { ispisNaDveCifre } from '../zajednicke-funkcionalnosti';
   templateUrl: './firma-pregled-radnog-vremena.component.html',
   styleUrls: ['./firma-pregled-radnog-vremena.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za pregled radnog vremena od strane firme
+ */
 export class FirmaPregledRadnogVremenaComponent implements OnInit {
 
   constructor(private router: Router, private firmaService: FirmaService) { }
@@ -27,10 +30,16 @@ export class FirmaPregledRadnogVremenaComponent implements OnInit {
 
   datum;
 
+  /**
+   * Skok na dodelu radnog vremena zaposlenom
+   */
   dodeliRadnoVreme() {
     this.router.navigate(['/firma/zaposleni/dodeli_radno_vreme']);
   }
 
+  /**
+   * Ispis vremena termina
+   */
   ispisiVreme(termin) {
     const pocetak = Number(termin.vreme_pocetka);
     const kraj = Number(termin.vreme_zavrsetka);
@@ -44,6 +53,9 @@ export class FirmaPregledRadnogVremenaComponent implements OnInit {
     return `${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)}-${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)}`;
   }
 
+  /**
+   * Namestanje ispisa datuma nakon promene izbora datuma
+   */
   datumPromenjen() {
     console.log('pozvan datumPromenjen()');
     if (this.datum == 'Invalid Date') return this.poruka = 'Unesite ispravan datum u formatu Mesec/Dan/Godina.';

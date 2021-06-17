@@ -23,12 +23,18 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
 
 const router = express.Router();
 
+/**
+ * Dohvatanje firme
+ */
 app.get('/firma/:firma_id', async(req, res, next) => {
     const firma_id = req.params.firma_id;
     const firma = await FirmaModel.findById(firma_id).select('naziv opis adresa').exec();
     res.json(firma);
 })
 
+/**
+ * Prijavljivanje na sistem
+ */
 app.post('/prijava', async (req, res, next) => {
     if (!req.body.email || !req.body.lozinka) return res.sendStatus(400);
 
@@ -49,6 +55,9 @@ app.post('/prijava', async (req, res, next) => {
     return res.json({ poruka: 'Ne postoji korisnik sa tom email adresom.' });
 });
 
+/**
+ * Pretraga po zadatom pojmu
+ */
 app.get('/pretraga/:pojam', async (req, res, next) => {
     const pojam = req.params.pojam;
 
@@ -78,4 +87,8 @@ app.use('/', usluge);
 app.use('/', termini);
 app.use('/', router);
 const PORT = 3232;
+
+/**
+ * Log da je pokrenut server
+ */
 app.listen(PORT, () => { console.log(`Server is running on port ${PORT}`) });

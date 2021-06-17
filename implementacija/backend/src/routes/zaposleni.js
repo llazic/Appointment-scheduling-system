@@ -6,23 +6,33 @@ const slanjeMaila = require('../slanje-maila');
 const validacija = require('../validacija');
 const sha256 = require('js-sha256');
 
-
+/**
+ * Dohvatanje zaposlenog po id-u
+ */
 router.get('/zaposleni/:zaposleni_id', async (req, res, next) => {
     let zaposleni = await KorisnikModel.findOne({ _id: req.params.zaposleni_id, tip: 'zaposleni' }).select('ime prezime usluge firma_id tip').exec();
     res.json(zaposleni);
 });
 
-
+/**
+ * Dohvatanje zaposlenih po firmi
+ */
 router.get('/:firma_id/zaposleni/', async (req, res, next) => {
     let zaposleni = await KorisnikModel.find({ firma_id: req.params.firma_id }).exec();
     res.json(zaposleni);
 })
 
+/**
+ * Dohvatanje zaposlenih po firmi i usluzi
+ */
 router.get('/zaposleni/:firma_id/:usluga_id', async (req, res, next) => {
     let zaposleni = await KorisnikModel.find({ firma_id: req.params.firma_id, usluge: req.params.usluga_id }).exec();
     res.json(zaposleni);
 })
 
+/**
+ * Brisanje zaposlenog
+ */
 router.delete('/zaposleni/:zaposleni_id', async (req, res, next) => {
     const zaposleni_id = req.params.zaposleni_id;
     const sada = new Date();
@@ -44,6 +54,9 @@ router.delete('/zaposleni/:zaposleni_id', async (req, res, next) => {
     res.json(zaposleni);
 })
 
+/**
+ * Promena lozinke zaposlenog
+ */
 //mora da stoji iznad router.put('/zaposleni/:zaposleni_id', ...) da bi se lepo uparila putanja
 router.put('/zaposleni/promeni_lozinku', async (req, res, next) => {
     const result = validacija.validirajZahtevZaPromenuLozinke(req.body);
@@ -64,7 +77,9 @@ router.put('/zaposleni/promeni_lozinku', async (req, res, next) => {
     res.json(zaposleni);
 });
 
-
+/**
+ * Azuriranje zaposlenog
+ */
 router.put('/zaposleni/:zaposleni_id', async (req, res, next) => {
     let zaposleni = await KorisnikModel.updateOne({ _id: req.params.zaposleni_id }, { $set: { usluge: req.body.usluge } }).exec();
 

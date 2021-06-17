@@ -6,6 +6,9 @@ import { FirmaService } from '../firma.service';
   templateUrl: './firma-pregled-usluga.component.html',
   styleUrls: ['./firma-pregled-usluga.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za pregled usluga od strane firme
+ */
 export class FirmaPregledUslugaComponent implements OnInit {
 
   constructor(private firmaService: FirmaService) { }

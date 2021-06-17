@@ -11,6 +11,12 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+/**
+ * Slanje mejla
+ * @param {*} subject 
+ * @param {*} poruka 
+ * @param {*} email 
+ */
 exports.saljiMail = function (subject, poruka, email) {
     let mailOptions = {
         from: process.env.MAIL_USER,

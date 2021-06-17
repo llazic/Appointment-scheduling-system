@@ -8,6 +8,9 @@ import { ispisNaDveCifre } from '../zajednicke-funkcionalnosti';
   templateUrl: './zaposleni-pregled-termina.component.html',
   styleUrls: ['./zaposleni-pregled-termina.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za pregled termina zaposlenog
+ */
 export class ZaposleniPregledTerminaComponent implements OnInit {
 
   constructor(private zaposleniService: ZaposleniService, private router: Router) { }
@@ -27,6 +30,9 @@ export class ZaposleniPregledTerminaComponent implements OnInit {
 
   termini = [];
 
+  /**
+   * Ispis vremena termina
+   */
   ispisiVreme(termin) {
     const pocetak = Number(termin.vreme_pocetka);
     const kraj = Number(termin.vreme_zavrsetka);
@@ -40,6 +46,9 @@ export class ZaposleniPregledTerminaComponent implements OnInit {
     return `${ispisNaDveCifre(satPocetka)}:${ispisNaDveCifre(minutPocetka)}-${ispisNaDveCifre(satZavrsetka)}:${ispisNaDveCifre(minutZavrsetka)}`;
   }
 
+  /**
+   * Obrada unetog datuma
+   */
   datumPromenjen() {
     console.log('pozvan datumPromenjen()');
     if (this.datum == 'Invalid Date') return this.poruka = 'Unesite ispravan datum u formatu Mesec/Dan/Godina.';

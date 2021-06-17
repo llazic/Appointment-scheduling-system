@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: './firma-dodaj-zaposlenog.component.html',
   styleUrls: ['./firma-dodaj-zaposlenog.component.css']
 })
+/**
+ * Klasa za rad sa komponentom za dodavanje zaposlenog od strane firme
+ */
 export class FirmaDodajZaposlenogComponent implements OnInit {
 
   constructor(private firmaService: FirmaService, private router: Router) { }
@@ -30,6 +33,9 @@ export class FirmaDodajZaposlenogComponent implements OnInit {
   email: string = '';
   odabraneUsluge : any;
 
+  /**
+   * Dodavanje/uklanjanj odabrane usluge iz niza
+   */
   kliknutCheckbox(usluga_id : string, uslugaOdabrana : boolean) {
     if (uslugaOdabrana) this.odabraneUsluge.push(usluga_id);
     else {
@@ -38,6 +44,9 @@ export class FirmaDodajZaposlenogComponent implements OnInit {
     }
   }
 
+  /**
+   * Dodavanje zaposlenog i skok na pregled zaposlenih
+   */
   dodajZaposlenog() {
     if (validacija.popunjenoSve([this.ime, this.prezime, this.email]) === false ) return this.poruka = 'Unesite sva polja.';
 

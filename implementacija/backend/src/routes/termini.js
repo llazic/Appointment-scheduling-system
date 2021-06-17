@@ -6,6 +6,9 @@ const validacija = require('../validacija');
 const { UslugaModel } = require('../modeli/usluga-model');
 const slanjeMaila = require('../slanje-maila');
 
+/**
+ * Dohvatanje termina po firmi i datumu
+ */
 router.get('/termini/:firma_id/:datum', async (req, res, next) => {
     const firma_id = req.params.firma_id;
     let zaposleni = await KorisnikModel.find({ firma_id: firma_id }).select('_id').exec();
@@ -19,6 +22,9 @@ router.get('/termini/:firma_id/:datum', async (req, res, next) => {
     res.json(radniDani);
 });
 
+/**
+ * Dohvatanje termina po zaposlenom i datumu
+ */
 router.get('/termini/zaposleni/:zaposleni_id/:datum', async (req, res, next) => {
     let datum = new Date(req.params.datum);
     datum.setHours(0, 0, 0, 0);
@@ -39,6 +45,9 @@ router.get('/termini/zaposleni/:zaposleni_id/:datum', async (req, res, next) => 
     res.json(radniDan.termini);
 });
 
+/**
+ * Kreiranje termina
+ */
 router.post('/termini/kreiraj', async (req, res, next) => {
     const result = validacija.validirajRadnoVreme(req.body);
     if (result.error) console.log(result.error);
@@ -83,7 +92,9 @@ router.post('/termini/kreiraj', async (req, res, next) => {
     else res.json(req.body);
 });
 
-
+/**
+ * Zakazivanje termina
+ */
 router.post('/termin/zakazi', async (req, res, next) => {
     const result = validacija.validirajTermin(req.body);
     if (result.error) console.log(result.error);
@@ -172,6 +183,9 @@ router.post('/termin/zakazi', async (req, res, next) => {
     res.json({ poruka: 'Nažalost, neko je zauzeo taj termin u međuvremenu.' });
 });
 
+/**
+ * Otkazivanje termina
+ */
 router.post(`/termin/otkazi`, async (req, res, next) => {
     const result = validacija.validirajZahtevZaOtkazivanjeTermina(req.body);
     if (result.error) console.log(result.error);
@@ -273,10 +287,16 @@ router.post(`/termin/otkazi`, async (req, res, next) => {
     }
 });
 
+/**
+ * Ispis broja na dve cifre
+ */
 function ispisNaDveCifre(broj) {
     return broj < 10 ? '0' + broj : '' + broj;
 }
 
+/**
+ * Dohvatanje zakazanih termina
+ */
 router.get('/termini/:klijent_id', async (req, res, next) => {
     let sada = new Date();
     const minuti = sada.getHours() * 60 + sada.getMinutes();
